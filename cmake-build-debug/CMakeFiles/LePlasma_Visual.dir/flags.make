@@ -6,5 +6,5 @@ CXX_FLAGS =  -std=c++11 -fopenmp -g
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/yuting/ClionProjects/LePlasma_Visual/library -I/usr/include/mpi -I/home/yuting/ClionProjects/LePlasma_Visual/include -I/home/yuting/ClionProjects/LePlasma_Visual -I/home/yuting/ClionProjects/LePlasma_Visual/include_cal -I/home/yuting/ClionProjects/LePlasma_Visual/LeFrame/include 
+CXX_INCLUDES = -I/home/ylang/ClionProjects/LePlasma_Visual/library -I/usr/include/mpi -I/home/yuting/ClionProjects/LePlasma_Visual/include -I/home/yuting/ClionProjects/LePlasma_Visual -I/home/yuting/ClionProjects/LePlasma_Visual/include_cal -I/home/yuting/ClionProjects/LePlasma_Visual/LeFrame/include 
 

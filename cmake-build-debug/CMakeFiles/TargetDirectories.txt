@@ -1,3 +1,3 @@
-/home/yuting/ClionProjects/LePlasma_Visual/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/yuting/ClionProjects/LePlasma_Visual/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/yuting/ClionProjects/LePlasma_Visual/cmake-build-debug/CMakeFiles/LePlasma_Visual.dir
+/home/ylang/ClionProjects/LePlasma_Visual/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/ylang/ClionProjects/LePlasma_Visual/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/ylang/ClionProjects/LePlasma_Visual/cmake-build-debug/CMakeFiles/LePlasma_Visual.dir

@@ -1,4 +1,4 @@
-/home/yuting/Softwares/clion-2016.3/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/yuting/ClionProjects/LePlasma_Visual
+/home/ylang/Softwares/clion-2016.3/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/ylang/ClionProjects/LePlasma_Visual
 -- The C compiler identification is GNU 5.4.0
 -- The CXX compiler identification is GNU 5.4.0
 -- Check for working C compiler: /usr/bin/cc
@@ -17,4 +17,4 @@
 -- Found GLUT: /usr/lib/x86_64-linux-gnu/libglut.so  
 -- Configuring done
 -- Generating done
--- Build files have been written to: /home/yuting/ClionProjects/LePlasma_Visual/cmake-build-debug
+-- Build files have been written to: /home/ylang/ClionProjects/LePlasma_Visual/cmake-build-debug

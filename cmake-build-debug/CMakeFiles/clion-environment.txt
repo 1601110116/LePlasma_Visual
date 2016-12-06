@@ -1,1 +1,1 @@
-CMake: 3.6.2@/home/yuting/Softwares/clion-2016.3/bin/cmake/bin/cmake
+CMake: 3.6.2@/home/ylang/Softwares/clion-2016.3/bin/cmake/bin/cmake
