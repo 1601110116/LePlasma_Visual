@@ -101,10 +101,10 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -fopenmp")
 include_directories(
         library ${OPENGL_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS}
         /usr/include/mpi/
-        /home/yuting/ClionProjects/LePlasma_Visual/include
-        /home/yuting/ClionProjects/LePlasma_Visual
-        /home/yuting/ClionProjects/LePlasma_Visual/include_cal
-        /home/yuting/ClionProjects/LePlasma_Visual/LeFrame/include)
+        /home/ylang/ClionProjects/LePlasma_Visual/include
+        /home/ylang/ClionProjects/LePlasma_Visual
+        /home/ylang/ClionProjects/LePlasma_Visual/include_cal
+        /home/ylang/ClionProjects/LePlasma_Visual/LeFrame/include)
 add_executable(LePlasma_Visual ${SOURCE_FILES})
 target_link_libraries(LePlasma_Visual
         ${OPENGL_LIBRARIES}
