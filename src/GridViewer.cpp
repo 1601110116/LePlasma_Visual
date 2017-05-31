@@ -24,7 +24,7 @@ void GridViewer::refreshGrid(){
 }
 
 void GridViewer::drawParticles(){
-	graphics.pointStyle(0,0xff0000,1);
+	graphics.pointStyle(0,0xffff00,1);
 
 	Particle* particle_iterator;
 	Vector3D pos;

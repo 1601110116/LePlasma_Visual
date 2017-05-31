@@ -14,6 +14,7 @@
 #include <Range.h>
 #include <RunManager.h>
 #include <iostream>
+#include <unistd.h>
 
 Grid* RunManager::grid=NULL;
 double RunManager::deltaT=0.0;
@@ -53,6 +54,7 @@ RunManager::~RunManager() {
 
 void RunManager::stepNext(){
 
+	usleep(500000);
 	n++;
 
 	double t=omp_get_wtime();

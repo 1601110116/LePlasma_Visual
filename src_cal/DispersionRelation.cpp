@@ -23,7 +23,7 @@
 DispersionRelation::DispersionRelation(){
 
 //	You should enable "updateA(range)" and "updateY(range)".
-	deltaT=1/(10*LIGHT_SPEED);
+	deltaT=1/(1000*LIGHT_SPEED);
 
 	if(RunManager::Nodes>1){
 		grid = new MPIGrid(4,1,1);

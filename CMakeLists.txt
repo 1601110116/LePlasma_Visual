@@ -102,6 +102,7 @@ include_directories(
         library ${OPENGL_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS}
         /usr/include/mpi/
         ./
+        ../
         ./include
         ./include_cal
         ./LeFrame/include)

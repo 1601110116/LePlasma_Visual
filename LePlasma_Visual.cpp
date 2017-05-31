@@ -32,7 +32,8 @@ int main(int argc, char**argv){
 #endif
 
 
-	Case* myCase=new DispersionRelation();
+	Case* myCase = new UniformB();
+//	Case* myCase=new DispersionRelation();
 	//Case* myCase=new SingleParticle();
 
 	RunManager *run = new RunManager(myCase);

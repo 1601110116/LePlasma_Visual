@@ -46,10 +46,11 @@
 				<Compiler>
 					<Add directory="/home/ylang/ClionProjects/LePlasma_Visual/library"/>
 					<Add directory="/usr/include/mpi"/>
-					<Add directory="/home/yuting/ClionProjects/LePlasma_Visual/include"/>
-					<Add directory="/home/yuting/ClionProjects/LePlasma_Visual"/>
-					<Add directory="/home/yuting/ClionProjects/LePlasma_Visual/include_cal"/>
-					<Add directory="/home/yuting/ClionProjects/LePlasma_Visual/LeFrame/include"/>
+					<Add directory="/home/ylang/ClionProjects/LePlasma_Visual/."/>
+					<Add directory="/home/ylang/ClionProjects/LePlasma_Visual/.."/>
+					<Add directory="/home/ylang/ClionProjects/LePlasma_Visual/./include"/>
+					<Add directory="/home/ylang/ClionProjects/LePlasma_Visual/./include_cal"/>
+					<Add directory="/home/ylang/ClionProjects/LePlasma_Visual/./LeFrame/include"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
@@ -75,10 +76,11 @@
 				<Compiler>
 					<Add directory="/home/ylang/ClionProjects/LePlasma_Visual/library"/>
 					<Add directory="/usr/include/mpi"/>
-					<Add directory="/home/yuting/ClionProjects/LePlasma_Visual/include"/>
-					<Add directory="/home/yuting/ClionProjects/LePlasma_Visual"/>
-					<Add directory="/home/yuting/ClionProjects/LePlasma_Visual/include_cal"/>
-					<Add directory="/home/yuting/ClionProjects/LePlasma_Visual/LeFrame/include"/>
+					<Add directory="/home/ylang/ClionProjects/LePlasma_Visual/."/>
+					<Add directory="/home/ylang/ClionProjects/LePlasma_Visual/.."/>
+					<Add directory="/home/ylang/ClionProjects/LePlasma_Visual/./include"/>
+					<Add directory="/home/ylang/ClionProjects/LePlasma_Visual/./include_cal"/>
+					<Add directory="/home/ylang/ClionProjects/LePlasma_Visual/./LeFrame/include"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>

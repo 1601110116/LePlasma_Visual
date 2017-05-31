@@ -23,7 +23,7 @@
 UniformB::UniformB(){
 
 /*	You should disable "updateA(range)" and "updateY(range)" first */
-	deltaT=M_PI/(10*LIGHT_SPEED);
+	deltaT=5.0*M_PI/(LIGHT_SPEED);
 
 	if(RunManager::Nodes>1){
 		grid = new MPIGrid(20,20,1);

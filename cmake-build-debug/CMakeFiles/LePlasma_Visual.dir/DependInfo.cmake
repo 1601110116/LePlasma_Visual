@@ -53,10 +53,11 @@ set(CMAKE_CXX_COMPILER_ID "GNU")
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "../library"
   "/usr/include/mpi"
-  "/home/yuting/ClionProjects/LePlasma_Visual/include"
-  "/home/yuting/ClionProjects/LePlasma_Visual"
-  "/home/yuting/ClionProjects/LePlasma_Visual/include_cal"
-  "/home/yuting/ClionProjects/LePlasma_Visual/LeFrame/include"
+  "../."
+  "../.."
+  ".././include"
+  ".././include_cal"
+  ".././LeFrame/include"
   )
 
 # Targets to which this target links.
