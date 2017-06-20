@@ -139,7 +139,7 @@ void DispersionRelation::initP(){
 	}end_for_each_Particle(curParticle)
 }
 
-
+// Initialize modified A. A = A_real/c
 void DispersionRelation::initA(){
 	//	Particle *curParticle;
 	//	double rc2;  //the distance between the source point and the field point multimplied by c square
@@ -158,7 +158,7 @@ void DispersionRelation::initA(){
 	//	}end_for_each_Particle(curParticle)
 }
 
-
+// Y = -E/(4\pi)
 void DispersionRelation::initY(){
 	//	Particle *curParticle;
 	//	Vector3D r;  //pointing from source point to field point

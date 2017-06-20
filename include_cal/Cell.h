@@ -62,6 +62,8 @@ class Cell{
 
 		Particle* head;
 		Particle* tail;
+
+		//records how many particles are there in the cell.
 		int _length;
 
 		//to make use of current particle list when sync.

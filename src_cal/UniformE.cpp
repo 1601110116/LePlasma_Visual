@@ -126,7 +126,7 @@ void UniformE::initP(){
 	}end_for_each_Particle(curParticle)
 }
 
-
+// Initialize modified A. A = A_real/c
 void UniformE::initA(){
 	//	Particle *curParticle;
 	//	double rc2;  //the distance between the source point and the field point multimplied by c square
@@ -145,7 +145,7 @@ void UniformE::initA(){
 	//	}end_for_each_Particle(curParticle)
 }
 
-
+// Y = -E_real/(4\pi)
 void UniformE::initY(){
 	for (int i = 0; i < grid->gridX(); ++i) {
 		for (int j = 0; j < grid->gridY(); ++j){

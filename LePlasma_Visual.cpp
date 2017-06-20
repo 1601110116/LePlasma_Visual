@@ -32,7 +32,7 @@ int main(int argc, char**argv){
 #endif
 
 
-	Case* myCase = new UniformB();
+	Case* myCase = new DispersionRelation();
 //	Case* myCase=new DispersionRelation();
 	//Case* myCase=new SingleParticle();
 

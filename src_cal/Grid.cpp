@@ -168,19 +168,22 @@ void Grid::refreshParticleLocation(){
 
 	Particle* p,*p_swap;
 	for_each_Particle(this,p){
-
+// p->cell is the cell that the particle was in before moving
 		if(p->cell!=NULL){
-
+// find the cell that the particle is in after being moved
 			int cell_x=floor(p->Position.x);
 			int cell_y=floor(p->Position.y);
 			int cell_z=floor(p->Position.z);
-
+/* if the cell found is out of our grid, then use the periodic boundary condition to find the cell
+ * in the grid that the particle should be in */
 			if(_period){
+                // TODO OPTIMIZE_3D
 				p->Position.x-=getPeriod(cell_x,_width)*_width;
 				p->Position.y-=getPeriod(cell_y,_height)*_height;
 				p->Position.z-=getPeriod(cell_z,_length)*_length;
 			}
-
+/* If the particle is still in the cell before moving, then we don't need to refresh its location.
+ * Otherwise we first withdraw the particle from its original cell and then put it into particleSwap/ */
 			if(cell(cell_x,cell_y,cell_z)!=p->cell){
 
 				p_swap=p;

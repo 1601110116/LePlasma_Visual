@@ -8,7 +8,7 @@
 #ifndef LEPLASMA_H_
 #define LEPLASMA_H_
 
-#define RECORD false
+#define RECORD true
 
 #define REPORT false
 
@@ -22,7 +22,11 @@
 #define DEGUB false
 #define OPTIMIZE true
 #define OPTIMIZE_1D_MPI false
+
+// if width >= 2 and height=length=1, you should switch on
 #define OPTIMIZE_1D false
+
+// if width, height, length >=2, you should switch on
 #define OPTIMIZE_3D false
 
 #define USE_CACHE true
