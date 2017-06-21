@@ -11,9 +11,7 @@
 #include <mpi.h>
 #include <MPIGrid.h>
 #include <omp.h>
-#include <Range.h>
 #include <RunManager.h>
-#include <iostream>
 #include <unistd.h>
 
 Grid* RunManager::grid=NULL;

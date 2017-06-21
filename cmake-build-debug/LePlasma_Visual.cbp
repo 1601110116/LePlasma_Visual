@@ -51,14 +51,14 @@
 					<Add directory="/home/ylang/ClionProjects/LePlasma_Visual/./include"/>
 					<Add directory="/home/ylang/ClionProjects/LePlasma_Visual/./include_cal"/>
 					<Add directory="/home/ylang/ClionProjects/LePlasma_Visual/./LeFrame/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
 					<Add directory="/usr/include/x86_64-linux-gnu"/>
 					<Add directory="/usr/include"/>
-					<Add directory="/usr/include/c++/5"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
-					<Add directory="/usr/include/c++/5/backward"/>
 				</Compiler>
 				<MakeCommands>
 					<Build command="/usr/bin/make -j4 -f &quot;/home/ylang/ClionProjects/LePlasma_Visual/cmake-build-debug/Makefile&quot;  VERBOSE=1 LePlasma_Visual"/>
@@ -81,14 +81,14 @@
 					<Add directory="/home/ylang/ClionProjects/LePlasma_Visual/./include"/>
 					<Add directory="/home/ylang/ClionProjects/LePlasma_Visual/./include_cal"/>
 					<Add directory="/home/ylang/ClionProjects/LePlasma_Visual/./LeFrame/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
 					<Add directory="/usr/include/x86_64-linux-gnu"/>
 					<Add directory="/usr/include"/>
-					<Add directory="/usr/include/c++/5"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
-					<Add directory="/usr/include/c++/5/backward"/>
 				</Compiler>
 				<MakeCommands>
 					<Build command="/usr/bin/make -j4 -f &quot;/home/ylang/ClionProjects/LePlasma_Visual/cmake-build-debug/Makefile&quot;  VERBOSE=1 LePlasma_Visual/fast"/>
