@@ -29,7 +29,7 @@ IV_Vector3D::~IV_Vector3D() {
 }
 
 ///////ANTI-MEMORY LEAK & FAST IV CALCULATE
-
+//TODO define these overloaded operators in the class body so that they are implicitly inline
 IV_Vector3D Vector3D::operator +(const Vector3D &a)const{
 	return IV_Vector3D(a.x+x,a.y+y,a.z+z);
 }

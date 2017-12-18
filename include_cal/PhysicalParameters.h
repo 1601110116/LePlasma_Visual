@@ -24,7 +24,7 @@
  *         1V/M = 4.1194e1 DELTA_X^-2QE
  *
  * When we input a parameter, we should multiply it with its unit. When a parameter is output, it
- * shoud be devided by its unit.
+ * should be divided by its unit.
  *
  */
 
