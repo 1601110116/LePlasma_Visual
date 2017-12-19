@@ -12,7 +12,7 @@
 #include <Grid.h>
 #include <LePlasma.h>
 #include <MPIGrid.h>
-#include <PhysicalParameters.h>
+#include <Macros.h>
 #include <RunManager.h>
 #include <stdlib.h>
 #include <Vector3D.h>

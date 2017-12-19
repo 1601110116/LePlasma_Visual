@@ -20,7 +20,7 @@
 #include <indexCache.h>
 #endif
 
-Range PtAdjacentL,PtAdjacentR;
+
 
 CSPIC::CSPIC(Grid*_grid,double dt):Engine(_grid,dt){
 
@@ -82,9 +82,9 @@ void CSPIC::update(const Range& range){
 
 
 #pragma omp barrier
-	setCurldA(range);
+//	setCurldA(range);
 #pragma omp barrier
-	setCurldTCurldA(range);
+//	setCurldTCurldA(range);
 
 //	updateY(range);
 

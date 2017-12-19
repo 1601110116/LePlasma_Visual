@@ -24,7 +24,7 @@ set(SOURCE_FILES
         include_cal/MPIGrid.h
         include_cal/Particle.h
         include_cal/ParticleDistributer.h
-        include_cal/PhysicalParameters.h
+        include_cal/Macros.h
         include_cal/PlateWave.h
         include_cal/Range.h
         include_cal/RunManager.h
@@ -91,7 +91,7 @@ set(SOURCE_FILES
         src_cal/Vertex.cpp
         DispersionRelation.h
         LePlasma.h
-        LePlasma_Visual.cpp)
+        LePlasma_Visual.cpp include_cal/EngineForSingleParticle.h src_cal/EngineForSingleParticle.cpp)
 find_package(OpenGL REQUIRED)
 find_package(GLUT REQUIRED)
 set(CMAKE_C_COMPILER mpicc)

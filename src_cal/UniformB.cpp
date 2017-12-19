@@ -12,13 +12,14 @@
 #include <Grid.h>
 #include <LePlasma.h>
 #include <MPIGrid.h>
-#include <PhysicalParameters.h>
+#include <Macros.h>
 #include <RunManager.h>
 #include <stdlib.h>
 #include <Vector3D.h>
 #include <Vertex.h>
 #include <cmath>
 #include <iostream>
+#include "EngineForSingleParticle.h"
 
 UniformB::UniformB(){
 
@@ -41,7 +42,7 @@ UniformB::UniformB(){
 
 	//select Engine
 
-	engine=new CSPIC(grid,deltaT);
+	engine=new EngineForSingleParticle(grid,deltaT);
 
 	launch(REPORT);
 }
