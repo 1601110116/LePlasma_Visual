@@ -9,7 +9,7 @@
 #include <cmath>
 #include <cstdlib>
 #include "MPIGrid.h"
-#include "PhysicalParameters.h"
+#include "Macros.h"
 #include "Grid.h"
 #include "Case.h"
 #include "CaseLauncher.h"
