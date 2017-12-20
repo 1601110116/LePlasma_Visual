@@ -19,13 +19,17 @@
 #include <Vertex.h>
 #include <cmath>
 #include <iostream>
+#include "EngineForSingleParticle.h"
 
 UniformBFalse::UniformBFalse(){
 
 /*	You should change "updateP(range)" into "updatePFalse(range)" first,
  *     and then disable "updateA(range)" and "updateY(range)".
  */
-	deltaT=M_PI/(10*LIGHT_SPEED);
+	lightSpeed = 3.2151e1;
+
+	deltaT=M_PI/(1*lightSpeed);
+
 
 	if(RunManager::Nodes>1){
 		grid = new MPIGrid(130,130,1);
@@ -33,13 +37,15 @@ UniformBFalse::UniformBFalse(){
 		grid = new Grid(130,130,1,true);
 	}
 
+	grid->lightSpeed = lightSpeed;
+
 	particle=new Electron();
 	particleCount=1;
 
 	thermalVelocity=0;//0.1*LIGHT_SPEED;
 
 	aVx=aVy=aVz=0;
-	aVy=-0.1*LIGHT_SPEED;
+	aVy=-0.1*lightSpeed;
 
 	//select Engine
 
@@ -176,14 +182,14 @@ void UniformBFalse::initA(){
 	//		//currently Momentum is Velocity
 	//		for_each_Vertex_around(grid, curVertex, curParticle, VertexRealPosition){
 	//			r = VertexRealPosition - curParticle->Position;
-	//			rc2 = sqrt(Square(r.x) + Square(r.y) + Square(r.z)) * Square(LIGHT_SPEED);
+	//			rc2 = sqrt(Square(r.x) + Square(r.y) + Square(r.z)) * Square(lightSpeed);
 	//			curVertex->A += (curParticle->Momentum / rc2);
 	//		}end_for_each_Vertex_around
 	//
 	//	}end_for_each_Particle(curParticle)
 	Vertex *curVertex;
 	for_each_Vertex_within(grid,curVertex,grid->workSpace){
-		curVertex->A=Vector3D(-curVertex->y()/2.0,curVertex->x()/2.0,0)*(LIGHT_SPEED/50.0);
+		curVertex->A=Vector3D(-curVertex->y()/2.0,curVertex->x()/2.0,0)*(lightSpeed/50.0);
 	}end_for_each_Vertex_within
 }
 
