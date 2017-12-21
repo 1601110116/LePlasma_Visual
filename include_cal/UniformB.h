@@ -21,6 +21,7 @@ public:
 	void initA();
 	void initY();
 	void launch(bool report);
+    void calcUnits();
 
 	void report();
 

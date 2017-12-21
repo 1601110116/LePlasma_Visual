@@ -13,6 +13,7 @@ public:
     CaseOfDipole();
     virtual ~CaseOfDipole();
 
+    void calcUnits();
     void distributeParticle();
     void initP();
     void initA();

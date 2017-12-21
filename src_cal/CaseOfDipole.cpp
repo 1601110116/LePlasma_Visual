@@ -40,9 +40,26 @@ inline double _W(const Vector3D &r){
 }
 
 
+void CaseOfDipole::calcUnits() {
+    // cell width in cm
+    double dx = 5.8594e-2;
+    // super particle weight in g
+    double mp = 1.8324e-19;
+    // super particle charge in g^1/2cm^3/2s^-1
+    double qp = 9.6616e-2;
+
+    double cm = 1.0/dx;
+    double gram = 1.0/mp;
+    // second in mp^1/2dx^3/2qp^-1
+    double second = qp*pow(gram,0.5)*pow(cm,1.5);
+    lightSpeed = 2.9979e10*cm/second;
+    cout << "lightSpeed = " << lightSpeed << endl;
+}
+
+
 
 CaseOfDipole::CaseOfDipole() {
-    lightSpeed = 3.2151e1;
+    calcUnits();
 
 /*	You should disable "updateA(range)" and "updateY(range)" first */
     deltaT=5.0*M_PI/(lightSpeed);
