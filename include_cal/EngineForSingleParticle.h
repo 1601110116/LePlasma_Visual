@@ -18,7 +18,7 @@ class Tensor3D;
 
 class EngineForSingleParticle: public Engine{
 public:
-    EngineForSingleParticle(Grid*, double);
+    EngineForSingleParticle(Grid*, double deltaT, double lightSpeed);
     virtual ~EngineForSingleParticle();
     void buildCache(const Range&);
 
@@ -30,6 +30,8 @@ public:
     void updateX(const Range&);
 
     void update(const Range&);
+
+    double lightSpeed;
 
 private:
     Range PtAdjacentL;

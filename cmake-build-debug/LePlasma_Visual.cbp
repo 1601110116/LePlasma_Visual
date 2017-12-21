@@ -203,6 +203,9 @@
 		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/include_cal/Case.h">
 			<Option target="LePlasma_Visual"/>
 		</Unit>
+		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/include_cal/CaseOfDipole.h">
+			<Option target="LePlasma_Visual"/>
+		</Unit>
 		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/include_cal/Cell.h">
 			<Option target="LePlasma_Visual"/>
 		</Unit>
@@ -297,6 +300,9 @@
 			<Option target="LePlasma_Visual"/>
 		</Unit>
 		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/src_cal/Case.cpp">
+			<Option target="LePlasma_Visual"/>
+		</Unit>
+		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/src_cal/CaseOfDipole.cpp">
 			<Option target="LePlasma_Visual"/>
 		</Unit>
 		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/src_cal/Cell.cpp">

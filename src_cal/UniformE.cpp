@@ -20,6 +20,26 @@
 #include <cmath>
 #include <iostream>
 
+
+inline double _W1(double x){
+    if (x > 2)
+        return 0.0;
+    else if (x > 1)
+        return x * (Cube(x) * (x * (x * (x * (15.0/1024 * x - 15.0/128) + 49.0/128) - 21.0/32) + 35.0/64) - 1.0) + 1.0;
+    else if (x > 0)
+        return Square(x) * (Square(x) * (x * (x * (x * (-15.0/1024 * x - 15.0/128) + 7.0/16) - 21.0/32) + 175.0/256) - 105.0/128) + 337.0/512;
+    else if (x > -1)
+        return x * x * (x * x * (x * (x * (x * (-15.0/1024 * x + 15.0/128) + 7.0/16) + 21.0/32) + 175.0/256) - 105.0/128) + 337.0/512;
+    else if (x > -2)
+        return x * (Cube(x) * (x * (x * (x * (15.0/1024 * x + 15.0/128) + 49.0/128) + 21.0/32) + 35.0/64) + 1.0) + 1.0;
+    else
+        return 0.0;
+}
+
+inline double _W(const Vector3D &r){
+    return _W1(r.x)*_W1(r.y)*_W1(r.z);
+}
+
 UniformE::UniformE(){
 	lightSpeed = 3.2151e1;
 	deltaT=1/(10*lightSpeed);
@@ -29,7 +49,6 @@ UniformE::UniformE(){
 	}else{
 		grid = new Grid(120,1,1,true);
 	}
-	grid->lightSpeed = lightSpeed;
 
 	particle=new Electron();
 	particleCount=1;
@@ -40,7 +59,7 @@ UniformE::UniformE(){
 
 	//select Engine
 
-	engine=new CSPIC(grid,deltaT);
+	engine=new CSPIC(grid,deltaT,lightSpeed);
 
 	launch(REPORT);
 }

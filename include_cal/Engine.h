@@ -22,7 +22,6 @@ public:
 
 	double deltaT;
 
-	double lightSpeed;
 
 };
 

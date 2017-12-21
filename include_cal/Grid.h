@@ -220,7 +220,6 @@ public:
 	Cell* cell(int a,int b ,int c);
 	Vertex* vertex(int a, int b, int c);
 
-	double lightSpeed;
 
 	////KEY FUNC
 
