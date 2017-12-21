@@ -54,7 +54,7 @@ RunManager::~RunManager() {
 
 void RunManager::stepNext(){
 
-	usleep(500000);
+//	usleep(500000);
 	n++;
 
 	double t=omp_get_wtime();

@@ -123,11 +123,11 @@ void CSPIC::update(const Range& range){
 
 
 #pragma omp barrier
-	setCurldA(range);
+//	setCurldA(range);
 #pragma omp barrier
-	setCurldTCurldA(range);
+//	setCurldTCurldA(range);
 
-	updateY(range);
+//	updateY(range);
 
 
 #pragma omp barrier
@@ -135,7 +135,7 @@ void CSPIC::update(const Range& range){
 
 
 #pragma omp barrier
-	updateA(range);
+//	updateA(range);
 	//implicit mp barrier
 }
 

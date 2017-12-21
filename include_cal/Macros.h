@@ -12,7 +12,7 @@
  * it Grid units. In Grid units we set
  *         DELTA_X = 2.4355e-2 cm                              which is the size of grid
  *         ME = 9.1094e-28 g                                       which is the mass of a electron
- *         QE = 4.0832e-10 g^0.5cm^1.5s^-1         which is the charge of a eletron
+ *         QE = 4.0832e-10 g^0.5cm^1.5s^-1         which is the charge of a electron
  * to be basic units, so that
  *         g = 1.0978e27 ME
  *         cm = 4.1059e1 DELTA_X
@@ -24,7 +24,7 @@
  *         1V/M = 4.1194e1 DELTA_X^-2QE
  *
  * When we input a parameter, we should multiply it with its unit. When a parameter is output, it
- * shoud be devided by its unit.
+ * should be divided by its unit.
  *
  */
 
@@ -76,8 +76,8 @@
 
 
 
-#define Square(a) (a)*(a)
-#define Cube(a) (a)*(a)*(a)
+#define Square(a) ((a)*(a))
+#define Cube(a) ((a)*(a)*(a))
 
 //ITER and EAST
 //#define LIGHT_SPEED 3.2151e1

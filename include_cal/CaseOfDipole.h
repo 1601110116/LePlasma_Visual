@@ -30,6 +30,12 @@ public:
     ofstream outFileX;
     ofstream outFileY;
 
+private:
+    double omegaCi;
+    double gauss;
+    double cm;
+    double gram;
+    double second;
 };
 
 

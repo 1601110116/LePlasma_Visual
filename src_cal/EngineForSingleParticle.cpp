@@ -195,7 +195,7 @@ void EngineForSingleParticle::buidCoefficientTensor(Tensor3D& coefficientTensor,
                     colVector=fetch_GradW_withVertex(curParticle,i,j,k);
 
                     rowVector = curVertex->A;
-                    rowVector*=deltaT;
+                    rowVector*=-deltaT;
 
                     coefficientTensor.x.x += colVector.x * rowVector.x;
                     coefficientTensor.x.y += colVector.x * rowVector.y;
@@ -277,10 +277,11 @@ void EngineForSingleParticle::updateX(const Range& range){
                                     }end_for_each_Vertex_around
 
                         dX=curParticle->Momentum;
-                        dX+=secondTerm;
+                        dX-=secondTerm;
                         dX*=deltaT;
-
+                        cout << curParticle->Position.toString() << endl;
                         curParticle->Position += dX;
+
 
                         //curParticle->Position += (curParticle->Momentum + secondTerm) * deltaT;
 

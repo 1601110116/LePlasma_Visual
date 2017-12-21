@@ -19,6 +19,7 @@
 #include <cmath>
 #include <iostream>
 #include "EngineForSingleParticle.h"
+#include "CSPIC.h"
 
 
 
@@ -79,7 +80,7 @@ UniformB::UniformB(){
 
 	//select Engine
 
-	engine=new EngineForSingleParticle(grid,deltaT,lightSpeed);
+	engine=new CSPIC(grid,deltaT,lightSpeed);
 
 	launch(REPORT);
 }

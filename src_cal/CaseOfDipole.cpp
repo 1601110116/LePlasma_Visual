@@ -42,18 +42,21 @@ inline double _W(const Vector3D &r){
 
 void CaseOfDipole::calcUnits() {
     // cell width in cm
-    double dx = 5.8594e-2;
+    double dx = 4.0e7;
     // super particle weight in g
-    double mp = 1.8324e-19;
+    double mp = 1.6726e-24;
     // super particle charge in g^1/2cm^3/2s^-1
-    double qp = 9.6616e-2;
-
-    double cm = 1.0/dx;
-    double gram = 1.0/mp;
+    double qp = 4.8032e-10;
+    cm = 1.0/dx;
+    gram = 1.0/mp;
     // second in mp^1/2dx^3/2qp^-1
-    double second = qp*pow(gram,0.5)*pow(cm,1.5);
+    second = qp*pow(gram,0.5)*pow(cm,1.5);
     lightSpeed = 2.9979e10*cm/second;
     cout << "lightSpeed = " << lightSpeed << endl;
+
+    gauss = pow(gram,0.5) * pow(cm,-0.5) * pow(second,-1);
+    omegaCi = 9.58e3*1.0e-2/second;
+
 }
 
 
@@ -62,12 +65,12 @@ CaseOfDipole::CaseOfDipole() {
     calcUnits();
 
 /*	You should disable "updateA(range)" and "updateY(range)" first */
-    deltaT=5.0*M_PI/(lightSpeed);
+    deltaT = 1/(8*omegaCi);
 
     if(RunManager::Nodes>1){
         grid = new MPIGrid(20,20,1);
     }else{
-        grid = new Grid(20,20,1,true);
+        grid = new Grid(64,64,64,true);
     }
 
     particle=new Electron();
@@ -75,8 +78,10 @@ CaseOfDipole::CaseOfDipole() {
 
     thermalVelocity=0;//0.1*LIGHT_SPEED;
 
-    aVx=aVy=aVz=0;
-    aVy=-0.1*lightSpeed;
+    double keV = sqrt(2*(1.0e3*1.602e-19*1.0e7*gram*pow(cm,2)*pow(second,-2)));
+    aVx=0;
+    aVy=10*keV;
+    aVz = 10*keV;
 
     //select Engine
 
@@ -172,9 +177,9 @@ void CaseOfDipole::distributeParticle(){
     for (int i = 0; i < particleCount; i++){
         Particle *newParticle = particle->clone();
 
-        newParticle->Position.x=5;
-        newParticle->Position.y=10;
-        newParticle->Position.z=0.5;
+        newParticle->Position.x=1e9*cm + grid->gridX()/2.0;
+        newParticle->Position.y=0.0 + grid->gridY()/2.0;
+        newParticle->Position.z=0.0 + grid->gridZ()/2.0;
 
         newParticle->Momentum.x=gaussRand(aVx, sigma);
         newParticle->Momentum.y=gaussRand(aVy, sigma);
@@ -195,7 +200,7 @@ void CaseOfDipole::initP(){
     for_each_Particle_within(grid, curParticle,grid->workSpace){
                         //currently Momentum is Velocity
                         for_each_Vertex_around(grid, curVertex, curParticle,VertexRealPosition){
-                                        curParticle->Momentum -= curVertex->A * _W(curParticle->Position - VertexRealPosition);
+                                        curParticle->Momentum += curVertex->A * _W(curParticle->Position - VertexRealPosition);
                                     }end_for_each_Vertex_around
 
                     }end_for_each_Particle(curParticle)
@@ -219,8 +224,22 @@ void CaseOfDipole::initA(){
     //
     //	}end_for_each_Particle(curParticle)
     Vertex *curVertex;
+    double B0r03 = 1.0e-2*gauss * pow(1.0e9*cm,3);
+    double Ax, Ay, Az;
+    double x,y,z;
+    double r,theta,phi;
+//    double B0r03 = 1.0e-2*gauss*Cube(1e9);
     for_each_Vertex_within(grid,curVertex,grid->workSpace){
-                    curVertex->A=Vector3D(-curVertex->y()/2.0,curVertex->x()/2.0,0)*(lightSpeed/50.0);
+                    x = curVertex->x()-grid->gridX()/2.0;
+                    y = curVertex->y()-grid->gridY()/2.0;
+                    z = curVertex->z()-grid->gridZ()/2.0;
+                    r = sqrt(Square(x)+Square(y)+Square(z));
+                    theta = acos(z/r);
+                    phi = atan(y/x);
+                    Ax = -sin(theta)*sin(phi);
+                    Ay = sin(theta)*cos(phi);
+                    Az = 0.0;
+                    curVertex->A=Vector3D(Ax, Ay, Az)*(B0r03/(Square(r)*lightSpeed));
                 }end_for_each_Vertex_within
 }
 
