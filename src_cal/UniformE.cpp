@@ -21,14 +21,15 @@
 #include <iostream>
 
 UniformE::UniformE(){
-
-	deltaT=1/(10*LIGHT_SPEED);
+	lightSpeed = 3.2151e1;
+	deltaT=1/(10*lightSpeed);
 
 	if(RunManager::Nodes>1){
 		grid = new MPIGrid(120,1,1);
 	}else{
 		grid = new Grid(120,1,1,true);
 	}
+	grid->lightSpeed = lightSpeed;
 
 	particle=new Electron();
 	particleCount=1;
@@ -151,7 +152,7 @@ void UniformE::initY(){
 		for (int j = 0; j < grid->gridY(); ++j){
 			for (int k = 0; k < grid->gridZ(); ++k){
 				grid->vertex(i,j,k)->Y=\
-						Vector3D(240.0/(Square(100.0/LIGHT_SPEED)*4.0*M_PI),0,0);
+						Vector3D(240.0/(Square(100.0/lightSpeed)*4.0*M_PI),0,0);
 			}
 		}
 	}

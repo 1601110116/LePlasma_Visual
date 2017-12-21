@@ -15,7 +15,7 @@
 #include <Vertex.h>
 #include <cmath>
 #include <iostream>
-
+#include "LePlasma.h"
 #if USE_CACHE
 #include <indexCache.h>
 #endif
@@ -82,11 +82,11 @@ void CSPIC::update(const Range& range){
 
 
 #pragma omp barrier
-//	setCurldA(range);
+	setCurldA(range);
 #pragma omp barrier
-//	setCurldTCurldA(range);
+	setCurldTCurldA(range);
 
-//	updateY(range);
+	updateY(range);
 
 
 #pragma omp barrier
@@ -94,7 +94,7 @@ void CSPIC::update(const Range& range){
 
 
 #pragma omp barrier
-//	updateA(range);
+	updateA(range);
 	//implicit mp barrier
 }
 
@@ -321,7 +321,7 @@ void CSPIC::updatePFalse(const Range &range){
 
 void CSPIC::updateY(const Range& range){
 
-	static double constAcceletor=deltaT * Square(LIGHT_SPEED)/ (4 * M_PI);
+	static double constAcceletor=deltaT * Square(lightSpeed)/ (4 * M_PI);
 
 	Vector3D firstTerm,secondTerm;
 	Vector3D dFirstTerm,dSecondTerm;
@@ -520,7 +520,7 @@ void CSPIC::updateY(const Range &range){
 	Vector3D acceletor_D1,acceletor_D2,acceletor_D3;
 	Vector3D acceletor_FT,acceletor_A;
 
-	static double constAcceletor=deltaT * Square(LIGHT_SPEED)/ (4 * M_PI);
+	static double constAcceletor=deltaT * Square(lightSpeed)/ (4 * M_PI);
 
 	setCurldA(range);
 	setCurldTCurldA(range);

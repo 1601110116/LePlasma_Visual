@@ -12,15 +12,17 @@ class Range;
 class Grid;
 
 class Engine {
-	public:
-		Engine(Grid*,double);
-		virtual ~Engine();
+public:
+	Engine(Grid*,double);
+	virtual ~Engine();
 
-		virtual void update(const Range&);
+	virtual void update(const Range&);
 
-		Grid* grid;
+	Grid* grid;
 
-		double deltaT;
+	double deltaT;
+
+	double lightSpeed;
 
 };
 

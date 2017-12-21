@@ -6,7 +6,7 @@
 // Description : Hello World in C++, Ansi-style
 //============================================================================
 
-#include <CaseLauncher.h>
+
 #include <DispersionRelation.h>
 #include <UniformE.h>
 #include <UniformB.h>

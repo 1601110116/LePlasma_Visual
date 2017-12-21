@@ -80,7 +80,7 @@
 #define Cube(a) (a)*(a)*(a)
 
 //ITER and EAST
-#define LIGHT_SPEED 3.2151e1
+//#define LIGHT_SPEED 3.2151e1
 
 
 

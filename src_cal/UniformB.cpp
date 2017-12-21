@@ -22,15 +22,17 @@
 #include "EngineForSingleParticle.h"
 
 UniformB::UniformB(){
+    lightSpeed = 3.2151e1;
 
 /*	You should disable "updateA(range)" and "updateY(range)" first */
-	deltaT=5.0*M_PI/(LIGHT_SPEED);
+	deltaT=5.0*M_PI/(lightSpeed);
 
 	if(RunManager::Nodes>1){
 		grid = new MPIGrid(20,20,1);
 	}else{
 		grid = new Grid(20,20,1,true);
 	}
+    grid->lightSpeed = lightSpeed;
 
 	particle=new Electron();
 	particleCount=1;
@@ -38,7 +40,7 @@ UniformB::UniformB(){
 	thermalVelocity=0;//0.1*LIGHT_SPEED;
 
 	aVx=aVy=aVz=0;
-	aVy=-0.1*LIGHT_SPEED;
+	aVy=-0.1*lightSpeed;
 
 	//select Engine
 
@@ -182,7 +184,7 @@ void UniformB::initA(){
 	//	}end_for_each_Particle(curParticle)
 	Vertex *curVertex;
 	for_each_Vertex_within(grid,curVertex,grid->workSpace){
-		curVertex->A=Vector3D(-curVertex->y()/2.0,curVertex->x()/2.0,0)*(LIGHT_SPEED/50.0);
+		curVertex->A=Vector3D(-curVertex->y()/2.0,curVertex->x()/2.0,0)*(lightSpeed/50.0);
 	}end_for_each_Vertex_within
 }
 

@@ -21,9 +21,10 @@
 #include <iostream>
 
 DispersionRelation::DispersionRelation(){
+	lightSpeed = 3.2151e1;
 
 //	You should enable "updateA(range)" and "updateY(range)".
-	deltaT=1/(1000*LIGHT_SPEED);
+	deltaT=1/(1000*lightSpeed);
 
 	if(RunManager::Nodes>1){
 		grid = new MPIGrid(4,1,1);
@@ -31,10 +32,12 @@ DispersionRelation::DispersionRelation(){
 		grid = new Grid(32,1,1,true);
 	}
 
+	grid->lightSpeed = lightSpeed;
+
 	particle=new Electron();
 	particleCount=32*1*1*100;
 
-	thermalVelocity=0.001*LIGHT_SPEED;//0.1*LIGHT_SPEED;
+	thermalVelocity=0.001*lightSpeed;//0.1*LIGHT_SPEED;
 
 	aVx=aVy=aVz=0;
 
@@ -151,7 +154,7 @@ void DispersionRelation::initA(){
 	//		//currently Momentum is Velocity
 	//		for_each_Vertex_around(grid, curVertex, curParticle, VertexRealPosition){
 	//			r = VertexRealPosition - curParticle->Position;
-	//			rc2 = sqrt(Square(r.x) + Square(r.y) + Square(r.z)) * Square(LIGHT_SPEED);
+	//			rc2 = sqrt(Square(r.x) + Square(r.y) + Square(r.z)) * Square(lightSpeed);
 	//			curVertex->A += (curParticle->Momentum / rc2);
 	//		}end_for_each_Vertex_around
 	//

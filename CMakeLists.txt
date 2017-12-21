@@ -9,7 +9,6 @@ set(SOURCE_FILES
         include/XYZIndicator.h
         include_cal/Buffer.h
         include_cal/Case.h
-        include_cal/CaseLauncher.h
         include_cal/Cell.h
         include_cal/CSPIC.h
         include_cal/DispersionRelation.h
@@ -29,7 +28,6 @@ set(SOURCE_FILES
         include_cal/Range.h
         include_cal/RunManager.h
         include_cal/Tensor3D.h
-        include_cal/TestFor.h
         include_cal/UniformB.h
         include_cal/UniformBFalse.h
         include_cal/UniformE.h
@@ -65,7 +63,6 @@ set(SOURCE_FILES
         src/Visualize.cpp
         src/XYZIndicator.cpp
         src_cal/Case.cpp
-        src_cal/CaseLauncher.cpp
         src_cal/Cell.cpp
         src_cal/CSPIC.cpp
         src_cal/DispersionRelation.cpp
@@ -83,7 +80,6 @@ set(SOURCE_FILES
         src_cal/Range.cpp
         src_cal/RunManager.cpp
         src_cal/Tensor3D.cpp
-        src_cal/TestFor.cpp
         src_cal/UniformB.cpp
         src_cal/UniformBFalse.cpp
         src_cal/UniformE.cpp

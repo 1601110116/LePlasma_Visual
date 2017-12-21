@@ -13,7 +13,6 @@
 
 Case::Case(){
 	// TODO Auto-generated constructor stub
-
 }
 
 Case::~Case() {

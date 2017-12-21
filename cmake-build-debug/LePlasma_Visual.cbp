@@ -51,14 +51,14 @@
 					<Add directory="/home/ylang/ClionProjects/LePlasma_Visual/./include"/>
 					<Add directory="/home/ylang/ClionProjects/LePlasma_Visual/./include_cal"/>
 					<Add directory="/home/ylang/ClionProjects/LePlasma_Visual/./LeFrame/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
 					<Add directory="/usr/include/x86_64-linux-gnu"/>
 					<Add directory="/usr/include"/>
-					<Add directory="/usr/include/c++/5"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
-					<Add directory="/usr/include/c++/5/backward"/>
 				</Compiler>
 				<MakeCommands>
 					<Build command="/usr/bin/make -j4 -f &quot;/home/ylang/ClionProjects/LePlasma_Visual/cmake-build-debug/Makefile&quot;  VERBOSE=1 LePlasma_Visual"/>
@@ -81,14 +81,14 @@
 					<Add directory="/home/ylang/ClionProjects/LePlasma_Visual/./include"/>
 					<Add directory="/home/ylang/ClionProjects/LePlasma_Visual/./include_cal"/>
 					<Add directory="/home/ylang/ClionProjects/LePlasma_Visual/./LeFrame/include"/>
+					<Add directory="/usr/include/c++/5"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
+					<Add directory="/usr/include/c++/5/backward"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include"/>
 					<Add directory="/usr/local/include"/>
 					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/5/include-fixed"/>
 					<Add directory="/usr/include/x86_64-linux-gnu"/>
 					<Add directory="/usr/include"/>
-					<Add directory="/usr/include/c++/5"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/5"/>
-					<Add directory="/usr/include/c++/5/backward"/>
 				</Compiler>
 				<MakeCommands>
 					<Build command="/usr/bin/make -j4 -f &quot;/home/ylang/ClionProjects/LePlasma_Visual/cmake-build-debug/Makefile&quot;  VERBOSE=1 LePlasma_Visual/fast"/>
@@ -203,9 +203,6 @@
 		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/include_cal/Case.h">
 			<Option target="LePlasma_Visual"/>
 		</Unit>
-		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/include_cal/CaseLauncher.h">
-			<Option target="LePlasma_Visual"/>
-		</Unit>
 		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/include_cal/Cell.h">
 			<Option target="LePlasma_Visual"/>
 		</Unit>
@@ -260,9 +257,6 @@
 		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/include_cal/Tensor3D.h">
 			<Option target="LePlasma_Visual"/>
 		</Unit>
-		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/include_cal/TestFor.h">
-			<Option target="LePlasma_Visual"/>
-		</Unit>
 		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/include_cal/UniformB.h">
 			<Option target="LePlasma_Visual"/>
 		</Unit>
@@ -303,9 +297,6 @@
 			<Option target="LePlasma_Visual"/>
 		</Unit>
 		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/src_cal/Case.cpp">
-			<Option target="LePlasma_Visual"/>
-		</Unit>
-		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/src_cal/CaseLauncher.cpp">
 			<Option target="LePlasma_Visual"/>
 		</Unit>
 		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/src_cal/Cell.cpp">
@@ -357,9 +348,6 @@
 			<Option target="LePlasma_Visual"/>
 		</Unit>
 		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/src_cal/Tensor3D.cpp">
-			<Option target="LePlasma_Visual"/>
-		</Unit>
-		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/src_cal/TestFor.cpp">
 			<Option target="LePlasma_Visual"/>
 		</Unit>
 		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/src_cal/UniformB.cpp">

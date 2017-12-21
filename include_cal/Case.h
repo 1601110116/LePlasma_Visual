@@ -20,25 +20,27 @@ using namespace std;
 
 
 class Case {
-	public:
-		Case();
-		virtual ~Case();
+public:
+	Case();
+	virtual ~Case();
 
-		virtual void distributeParticle();
-		virtual void initP();
-		virtual void initA();
-		virtual void initY();
-		virtual void report();
+	virtual void distributeParticle();
+	virtual void initP();
+	virtual void initA();
+	virtual void initY();
+	virtual void report();
 
-		virtual void launch(bool report);
+	virtual void launch(bool report);
 
-		Grid* grid;
+	Grid* grid;
 
-		double deltaT;
+	double deltaT;
 
-		Engine* engine;
+	double lightSpeed;
 
-		ofstream outputFile;
+	Engine* engine;
+
+	ofstream outputFile;
 
 };
 

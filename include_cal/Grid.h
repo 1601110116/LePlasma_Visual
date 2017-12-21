@@ -213,71 +213,72 @@ class Cell;
 class Range;
 
 class Grid {
-	public:
-		Grid(int x, int y,int z, bool period);
-		virtual ~Grid();
+public:
+	Grid(int x, int y,int z, bool period);
+	virtual ~Grid();
 
-		Cell* cell(int a,int b ,int c);
-		Vertex* vertex(int a, int b, int c);
+	Cell* cell(int a,int b ,int c);
+	Vertex* vertex(int a, int b, int c);
+
+	double lightSpeed;
+
+	////KEY FUNC
+
+	bool addParticle(Particle* p);
+
+	virtual bool directAddParticle(Particle* p);
+
+	bool moveParticleTo(Particle* p, const Vector3D &location);
+
+	virtual void refreshParticleLocation();
+
+	virtual void syncSharedParticles();
+
+	virtual void reportToHost();
+
+	////
+
+	int gridX();
+	int gridY();
+	int gridZ();
+
+	int particles();
+
+	void showGridMap();
+
+	Vector3D**** A_indexer;
+	Vector3D**** Y_indexer;
 
 
-		////KEY FUNC
+	///obsolete
+	int lengthX();
+	int lengthY();
+	int lengthZ();
 
-		bool addParticle(Particle* p);
+	double scale();
 
-		virtual bool directAddParticle(Particle* p);
+	//sacrifies
 
-		bool moveParticleTo(Particle* p, const Vector3D &location);
+	Range World;
+	Range workSpace;
+	int _width,_height,_length;
+	int _workLength;
 
-		virtual void refreshParticleLocation();
+	int workLength();
 
-		virtual void syncSharedParticles();
+protected:
+	void initGrid3D(int x,int y,int z);
 
-		virtual void reportToHost();
+	Vertex**** VertexContainer;
+	Cell**** CellContainer;
 
-		////
+	Cell* particleSwap;
 
-		int gridX();
-		int gridY();
-		int gridZ();
+	double _scale;
 
-		int particles();
+	int _particle_amount;
 
-		void showGridMap();
-
-		Vector3D**** A_indexer;
-		Vector3D**** Y_indexer;
-
-
-		///obsolete
-		int lengthX();
-		int lengthY();
-		int lengthZ();
-
-		double scale();
-
-		//sacrifies
-
-		Range World;
-		Range workSpace;
-		int _width,_height,_length;
-		int _workLength;
-
-		int workLength();
-
-	protected:
-		void initGrid3D(int x,int y,int z);
-
-		Vertex**** VertexContainer;
-		Cell**** CellContainer;
-
-		Cell* particleSwap;
-
-		double _scale;
-
-		int _particle_amount;
-
-		bool _period;
+	bool _period;
 };
 
 #endif /* GRID_H_ */

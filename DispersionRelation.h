@@ -9,6 +9,7 @@
 #define INCLUDE_DISPERSIONRELATION_H_
 
 #include <Case.h>
+#include "Particle.h"
 
 class DispersionRelation:public Case {
 	public:
