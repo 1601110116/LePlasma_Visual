@@ -12,25 +12,25 @@
 #include "Particle.h"
 
 class UniformB:public Case {
-	public:
-		UniformB();
-		virtual ~UniformB();
+public:
+	UniformB();
+	virtual ~UniformB();
 
-		void distributeParticle();
-		void initP();
-		void initA();
-		void initY();
-		void launch(bool report);
+	void distributeParticle();
+	void initP();
+	void initA();
+	void initY();
+	void launch(bool report);
 
-		void report();
+	void report();
 
-		Particle* particle;
-		int particleCount;
+	Particle* particle;
+	int particleCount;
 
-		double thermalVelocity;
-		double aVx,aVy,aVz;
-		ofstream outFileX;
-		ofstream outFileY;
+	double thermalVelocity;
+	double aVx,aVy,aVz;
+	ofstream outFileX;
+	ofstream outFileY;
 };
 
 #endif /* INCLUDE_DISPERSIONRELATION_H_ */

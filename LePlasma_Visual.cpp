@@ -11,6 +11,7 @@
 #include <UniformE.h>
 #include <UniformB.h>
 #include <UniformBFalse.h>
+#include "CaseOfDipole.h"
 #include <GLEnvironment.h>
 #include <Grid.h>
 #include <LePlasma.h>
@@ -32,7 +33,7 @@ int main(int argc, char**argv){
 #endif
 
 
-	Case* myCase = new UniformB();
+	Case* myCase = new CaseOfDipole();
 //	Case* myCase=new DispersionRelation();
 	//Case* myCase=new SingleParticle();
 
