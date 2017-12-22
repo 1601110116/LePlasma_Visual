@@ -46,10 +46,10 @@ public:
     void updateA(const Range&);
     void updatePFalse(const Range&);
 
-    void update(const Range&);
+    void update(const Range&) override;
     double lightSpeed;
 
-    CSPIC(Grid*,double dt, double lightSpeed);
+    CSPIC(Grid*,double dt, map<string, double> &units);
     virtual ~CSPIC();
 
 private:

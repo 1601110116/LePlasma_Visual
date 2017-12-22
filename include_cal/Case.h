@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <map>
 
 
 class Grid;
@@ -24,6 +25,7 @@ public:
 	Case();
 	virtual ~Case();
 
+	virtual void calcUnits();
 	virtual void distributeParticle();
 	virtual void initP();
 	virtual void initA();
@@ -36,9 +38,9 @@ public:
 
 	double deltaT;
 
-	double lightSpeed;
-
 	Engine* engine;
+
+	map<string, double> units;
 
 	ofstream outputFile;
 

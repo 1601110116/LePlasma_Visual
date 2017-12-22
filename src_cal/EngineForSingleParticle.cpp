@@ -61,12 +61,13 @@ inline void GradW(Vector3D& gradW, const Vector3D &r){
     gradW.z=_W1(r.x)*_W1(r.y)*dW1(r.z);
 }
 
-EngineForSingleParticle::EngineForSingleParticle(Grid *_grid, double dt, double lightSpeed, Particle *uniqueParticle):lightSpeed(lightSpeed), uniqueParticle(uniqueParticle),Engine(_grid, dt) {
+EngineForSingleParticle::EngineForSingleParticle(Grid *_grid, double dt, Particle *uniqueParticle,map<string, double> &units):\
+lightSpeed(lightSpeed), uniqueParticle(uniqueParticle),Engine(_grid, dt, units) {
 #if MPI_PARALLEL && USE_CACHE
     PtAdjacentL=Range(P_ADJ_BEGIN_L,SWAP_LEN,0,grid->_height,0,grid->_length);
 	PtAdjacentR=Range(grid->_width-SWAP_LEN,grid->_width-P_ADJ_BEGIN_R,0,grid->_height,0,grid->_length);
 #endif
-
+    lightSpeed = units["lightSpeed"];
 
 }
 
@@ -183,7 +184,7 @@ void EngineForSingleParticle::buildCache(const Range& r){
 }
 
 
-void EngineForSingleParticle::buidCoefficientTensor(Tensor3D& coefficientTensor,const Range &range, double deltaT, Particle *curParticle){
+void EngineForSingleParticle::buildCoefficientTensor(Tensor3D& coefficientTensor,const Range &range, double deltaT, Particle *curParticle){
     coefficientTensor.restore();
     Vertex* curVertex;
     Vector3D colVector;
@@ -250,7 +251,7 @@ void EngineForSingleParticle::updateP(const Range& range){
 
     curParticle = uniqueParticle;
 //    for_each_Particle_within(grid, curParticle, range){
-                        buidCoefficientTensor(coefficient, range, deltaT, curParticle);
+                        buildCoefficientTensor(coefficient, range, deltaT, curParticle);
                         buildRHSVector(RHS, range, deltaT, curParticle);
                         rootOfLinearEquationSet(curParticle->Momentum, coefficient, RHS);
 //                    }end_for_each_Particle(curParticle)

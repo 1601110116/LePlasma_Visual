@@ -7,20 +7,22 @@
 
 #include "Case.h"
 #include "Particle.h"
+#include <map>
+#include <string>
 
 class CaseOfDipole: public Case {
 public:
     CaseOfDipole();
     virtual ~CaseOfDipole();
 
-    void calcUnits();
-    void distributeParticle();
-    void initP();
-    void initA();
-    void initY();
-    void launch(bool report);
+    void calcUnits() override ;
+    void distributeParticle() override;
+    void initP() override ;
+    void initA() override ;
+    void initY() override ;
+    void launch(bool report) override;
 
-    void report();
+    void report() override;
 
     Particle* particle;
     int particleCount;
@@ -30,7 +32,8 @@ public:
     ofstream outFileX;
     ofstream outFileY;
 
-private:
+
+    map<string, double> units;
     double omegaCi;
     double gauss;
     double cm;

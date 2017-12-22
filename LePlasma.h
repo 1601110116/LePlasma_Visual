@@ -17,6 +17,7 @@
 #define CUTZ 2
 #define CUT CUTX
 
+#define OMP_PARALLEL false
 #define MPI_PARALLEL false
 
 #define DEGUB false

@@ -47,15 +47,15 @@ void CaseOfDipole::calcUnits() {
     double mp = 1.6726e-24;
     // super particle charge in g^1/2cm^3/2s^-1
     double qp = 4.8032e-10;
-    cm = 1.0/dx;
-    gram = 1.0/mp;
-    // second in mp^1/2dx^3/2qp^-1
-    second = qp*pow(gram,0.5)*pow(cm,1.5);
-    lightSpeed = 2.9979e10*cm/second;
-    cout << "lightSpeed = " << lightSpeed << endl;
 
-    gauss = pow(gram,0.5) * pow(cm,-0.5) * pow(second,-1);
-    omegaCi = 9.58e3*1.0e-2/second;
+    units["cm"] = 1.0/dx;
+    units["gram"] = 1.0/mp;
+    units["second"] = qp*pow(units["gram"],0.5)*pow(units["cm"],1.5);
+    units["lightSpeed"] = 2.9979e10*units["cm"]/units["second"];
+    units["gauss"] = pow(units["gram"],0.5) * pow(units["cm"],-0.5) * pow(units["second"],-1);
+    units["omegaCi"] = 9.58e3*1.0e-2/units["second"];
+
+    cout << "lightSpeed = " << units["lightSpeed"] << endl;
 
 }
 
@@ -105,7 +105,7 @@ void CaseOfDipole::launch(bool report){
     initY();
 
     //select Engine
-    engine=new EngineForSingleParticle(grid,deltaT,lightSpeed,uniqueParticle);
+    engine=new EngineForSingleParticle(grid,deltaT,uniqueParticle,units);
 
     if(RunManager::Nodes>1){
         grid->refreshParticleLocation();
@@ -241,7 +241,7 @@ void CaseOfDipole::initA(){
                     Ax = -sin(theta)*sin(phi);
                     Ay = sin(theta)*cos(phi);
                     Az = 0.0;
-                    curVertex->A=Vector3D(Ax, Ay, Az)*(B0r03/(Square(r)*lightSpeed));
+                    curVertex->A=Vector3D(Ax, Ay, Az)*(B0r03/(Square(r)*units["lightSpeed"]));
                 }end_for_each_Vertex_within
 }
 

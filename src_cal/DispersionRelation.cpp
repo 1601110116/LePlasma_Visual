@@ -19,6 +19,7 @@
 #include <Vertex.h>
 #include <cmath>
 #include <iostream>
+#include <DispersionRelation.h>
 
 
 inline double _W1(double x){
@@ -42,6 +43,7 @@ inline double _W(const Vector3D &r){
 
 DispersionRelation::DispersionRelation(){
 	lightSpeed = 3.2151e1;
+	units["lightSpeed"] = lightSpeed;
 
 //	You should enable "updateA(range)" and "updateY(range)".
 	deltaT=1/(1000*lightSpeed);
@@ -62,7 +64,7 @@ DispersionRelation::DispersionRelation(){
 
 	//select Engine
 
-	engine=new CSPIC(grid,deltaT,lightSpeed);
+	engine=new CSPIC(grid,deltaT,units);
 
 	launch(REPORT);
 }

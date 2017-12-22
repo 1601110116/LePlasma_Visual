@@ -47,7 +47,7 @@ UniformBFalse::UniformBFalse(){
  *     and then disable "updateA(range)" and "updateY(range)".
  */
 	lightSpeed = 3.2151e1;
-
+	units["lightSpeed"] = lightSpeed;
 	deltaT=M_PI/(1*lightSpeed);
 
 
@@ -68,7 +68,7 @@ UniformBFalse::UniformBFalse(){
 
 	//select Engine
 
-	engine=new CSPIC(grid,deltaT,lightSpeed);
+	engine=new CSPIC(grid,deltaT,units);
 
 	launch(REPORT);
 }

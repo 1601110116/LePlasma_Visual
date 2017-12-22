@@ -10,27 +10,30 @@
 
 #include "Case.h"
 #include "Particle.h"
+#include <map>
 
 class UniformBFalse:public Case {
-	public:
-		UniformBFalse();
-		virtual ~UniformBFalse();
+public:
+	UniformBFalse();
+	virtual ~UniformBFalse();
 
-		void distributeParticle();
-		void initP();
-		void initA();
-		void initY();
-		void launch(bool report);
+	void distributeParticle();
+	void initP();
+	void initA();
+	void initY();
+	void launch(bool report);
 
-		void report();
+	void report();
 
-		Particle* particle;
-		int particleCount;
+	Particle* particle;
+	int particleCount;
+	map<string, double> units;
+	double lightSpeed;
 
-		double thermalVelocity;
-		double aVx,aVy,aVz;
-		ofstream outFileX;
-		ofstream outFileY;
+	double thermalVelocity;
+	double aVx,aVy,aVz;
+	ofstream outFileX;
+	ofstream outFileY;
 };
 
 #endif /* INCLUDE_DISPERSIONRELATION_H_ */

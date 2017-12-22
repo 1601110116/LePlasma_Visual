@@ -8,7 +8,7 @@
 #include <Engine.h>
 #include <include_cal/Grid.h>
 
-Engine::Engine(Grid* _grid,double dt):grid(_grid),deltaT(dt) {
+Engine::Engine(Grid* _grid,double dt,map<string,double>& units):grid(_grid),deltaT(dt),units(units) {
 
 }
 

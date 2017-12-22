@@ -50,12 +50,15 @@ void UniformB::calcUnits() {
     // super particle charge in g^1/2cm^3/2s^-1
     double qp = 9.6616e-2;
 
-    double cm = 1.0/dx;
-    double gram = 1.0/mp;
-    // second in mp^1/2dx^3/2qp^-1
-    double second = qp*pow(gram,0.5)*pow(cm,1.5);
-    lightSpeed = 2.9979e10*cm/second;
-    cout << "lightSpeed = " << lightSpeed << endl;
+    units["cm"] = 1.0/dx;
+    units["gram"] = 1.0/mp;
+    units["second"] = qp*pow(units["gram"],0.5)*pow(units["cm"],1.5);
+    units["lightSpeed"] = 2.9979e10*units["cm"]/units["second"];
+    units["gauss"] = pow(units["gram"],0.5) * pow(units["cm"],-0.5) * pow(units["second"],-1);
+    units["omegaCi"] = 9.58e3*1.0e-2/units["second"];
+
+    lightSpeed = units["lightSpeed"];
+
 }
 
 UniformB::UniformB(){
@@ -80,7 +83,7 @@ UniformB::UniformB(){
 
 	//select Engine
 
-	engine=new CSPIC(grid,deltaT,lightSpeed);
+	engine=new CSPIC(grid,deltaT,units);
 
 	launch(REPORT);
 }

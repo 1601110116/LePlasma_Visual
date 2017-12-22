@@ -63,7 +63,7 @@ inline void GradW(Vector3D& gradW, const Vector3D &r){
     gradW.z=_W1(r.x)*_W1(r.y)*dW1(r.z);
 }
 
-CSPIC::CSPIC(Grid*_grid,double dt, double lightSpeed):lightSpeed(lightSpeed), Engine(_grid,dt){
+CSPIC::CSPIC(Grid*_grid,double dt, map<string, double> &units):Engine(_grid,dt,units){
 
 	init_3D_Vector_Field(curldA,grid->_width,grid->_height,grid->_length);
 	init_3D_Vector_Field(curldTCurldA, grid->_width,grid->_height,grid->_length);
@@ -74,6 +74,7 @@ CSPIC::CSPIC(Grid*_grid,double dt, double lightSpeed):lightSpeed(lightSpeed), En
 	PtAdjacentR=Range(grid->_width-SWAP_LEN,grid->_width-P_ADJ_BEGIN_R,0,grid->_height,0,grid->_length);
 #endif
 
+	lightSpeed = units["lightSpeed"];
 }
 
 CSPIC::~CSPIC(){

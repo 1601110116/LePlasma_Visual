@@ -18,7 +18,7 @@ Case::Case(){
 Case::~Case() {
 	// TODO Auto-generated destructor stub
 }
-
+void Case::calcUnits() {}
 void Case::distributeParticle(){}
 void Case::initP(){}
 void Case::initA(){}

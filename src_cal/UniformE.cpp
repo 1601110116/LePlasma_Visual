@@ -42,6 +42,7 @@ inline double _W(const Vector3D &r){
 
 UniformE::UniformE(){
 	lightSpeed = 3.2151e1;
+	units["lightSpeed"] = lightSpeed;
 	deltaT=1/(10*lightSpeed);
 
 	if(RunManager::Nodes>1){
@@ -59,7 +60,7 @@ UniformE::UniformE(){
 
 	//select Engine
 
-	engine=new CSPIC(grid,deltaT,lightSpeed);
+	engine=new CSPIC(grid,deltaT,units);
 
 	launch(REPORT);
 }
