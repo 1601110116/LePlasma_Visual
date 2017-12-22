@@ -65,12 +65,12 @@ CaseOfDipole::CaseOfDipole() {
     calcUnits();
 
 /*	You should disable "updateA(range)" and "updateY(range)" first */
-    deltaT = 1/(8*omegaCi);
+    deltaT = 1.5/(8*omegaCi);
 
     if(RunManager::Nodes>1){
         grid = new MPIGrid(20,20,1);
     }else{
-        grid = new Grid(64,64,64,true);
+        grid = new Grid(64,64,16,true);
     }
 
     particle=new Electron();
@@ -83,9 +83,7 @@ CaseOfDipole::CaseOfDipole() {
     aVy=10*keV;
     aVz = 10*keV;
 
-    //select Engine
 
-    engine=new EngineForSingleParticle(grid,deltaT,lightSpeed);
 
     launch(REPORT);
 }
@@ -105,6 +103,9 @@ void CaseOfDipole::launch(bool report){
     initA();
     initP();
     initY();
+
+    //select Engine
+    engine=new EngineForSingleParticle(grid,deltaT,lightSpeed,uniqueParticle);
 
     if(RunManager::Nodes>1){
         grid->refreshParticleLocation();
@@ -186,6 +187,7 @@ void CaseOfDipole::distributeParticle(){
         newParticle->Momentum.z=gaussRand(aVz, sigma);
 
         grid->directAddParticle(newParticle);
+        uniqueParticle = newParticle;
     }
 
 }

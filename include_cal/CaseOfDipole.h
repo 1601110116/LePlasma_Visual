@@ -36,6 +36,7 @@ private:
     double cm;
     double gram;
     double second;
+    Particle *uniqueParticle;
 };
 
 

@@ -61,11 +61,12 @@ inline void GradW(Vector3D& gradW, const Vector3D &r){
     gradW.z=_W1(r.x)*_W1(r.y)*dW1(r.z);
 }
 
-EngineForSingleParticle::EngineForSingleParticle(Grid *_grid, double dt, double lightSpeed):lightSpeed(lightSpeed), Engine(_grid, dt) {
+EngineForSingleParticle::EngineForSingleParticle(Grid *_grid, double dt, double lightSpeed, Particle *uniqueParticle):lightSpeed(lightSpeed), uniqueParticle(uniqueParticle),Engine(_grid, dt) {
 #if MPI_PARALLEL && USE_CACHE
     PtAdjacentL=Range(P_ADJ_BEGIN_L,SWAP_LEN,0,grid->_height,0,grid->_length);
 	PtAdjacentR=Range(grid->_width-SWAP_LEN,grid->_width-P_ADJ_BEGIN_R,0,grid->_height,0,grid->_length);
 #endif
+
 
 }
 
@@ -163,9 +164,9 @@ void EngineForSingleParticle::buildCache(const Range& r){
     Vector3D VertexRealPosition;
     Vector3D distance;
 
-    Particle* p;
+    Particle* p = uniqueParticle;
 
-    for_each_Particle_within(grid,p,r){
+//    for_each_Particle_within(grid,p,r){
 
                         for_each_Vertex_around(grid, v,p, VertexRealPosition){
 
@@ -177,7 +178,7 @@ void EngineForSingleParticle::buildCache(const Range& r){
 
                                     }end_for_each_Vertex_around
 
-                    }end_for_each_Particle(p)
+//                    }end_for_each_Particle(p)
 
 }
 
@@ -247,11 +248,12 @@ void EngineForSingleParticle::updateP(const Range& range){
     Tensor3D coefficient;    // The 3*3 coefficient matrix
     Vector3D RHS;                // Right hand side
 
-    for_each_Particle_within(grid, curParticle, range){
+    curParticle = uniqueParticle;
+//    for_each_Particle_within(grid, curParticle, range){
                         buidCoefficientTensor(coefficient, range, deltaT, curParticle);
                         buildRHSVector(RHS, range, deltaT, curParticle);
                         rootOfLinearEquationSet(curParticle->Momentum, coefficient, RHS);
-                    }end_for_each_Particle(curParticle)
+//                    }end_for_each_Particle(curParticle)
 
 }
 
@@ -264,7 +266,8 @@ void EngineForSingleParticle::updateX(const Range& range){
 
     int i,j,k;
 
-    for_each_Particle_within(grid, curParticle, range){
+    curParticle = uniqueParticle;
+//    for_each_Particle_within(grid, curParticle, range){
                         secondTerm.restore();
 
                         Cache_for_each_Vertex_around(grid, curVertex,curParticle, i,j,k){
@@ -285,6 +288,6 @@ void EngineForSingleParticle::updateX(const Range& range){
 
                         //curParticle->Position += (curParticle->Momentum + secondTerm) * deltaT;
 
-                    }end_for_each_Particle(curParticle)
+//                    }end_for_each_Particle(curParticle)
 
 }
