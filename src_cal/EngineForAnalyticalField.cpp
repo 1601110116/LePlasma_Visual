@@ -28,6 +28,10 @@ void EngineForAnalyticalField::calcA(Particle *p) {
     p->A.x = -units["B0r03/c"]*y*tmp3;
     p->A.y = units["B0r03/c"]*x*tmp3;
     p->A.z = 0;
+
+    // UniformB
+//    p->A.x = -1.0e-2*units["gauss"]*y/2/units["c"];
+//    p->A.y = 1.0e-2*units["gauss"]*x/2/units["c"];
 }
 
 void EngineForAnalyticalField::calcGradAdt() {
@@ -40,6 +44,16 @@ void EngineForAnalyticalField::calcGradAdt() {
     gradAdt.z.x = 3*units["B0r03/c"]*y*z*tmp2*deltaT;
     gradAdt.z.y = -3*units["B0r03/c"]*z*x*tmp2*deltaT;
     gradAdt.z.z = 0;
+
+
+    //UniformB
+//    gradAdt.x.x = 0;
+//    gradAdt.x.y = 1.0e-2*units["gauss"]/2/units["c"]*deltaT;
+//    gradAdt.x.z = 0;
+//    gradAdt.y.x = -1.0e-2*units["gauss"]/2/units["c"]*deltaT;
+//    gradAdt.y.y = 0;
+//    gradAdt.y.z = 0;
+//    gradAdt.z = Vector3D();
 }
 
 void EngineForAnalyticalField::updateP(const Range &range) {
@@ -47,6 +61,7 @@ void EngineForAnalyticalField::updateP(const Range &range) {
     Vector3D RHS;
     Particle *p;
     for_each_Particle_within(grid, p, range){
+
                         x = p->Position.x - grid->gridX()/2.0;
                         y = p->Position.y - grid->gridY()/2.0;
                         z = p->Position.z - grid->gridZ()/2.0;
@@ -59,7 +74,9 @@ void EngineForAnalyticalField::updateP(const Range &range) {
                         RHS = p->Momentum - (gradAdt*(p->A));
                         cout << "p->A = " << p->A.toString() << endl;
                         cout << "p->P = " << p->Momentum.toString() << endl;
-                        rootOfLinearEquationSet(p->Momentum, coefficient, RHS);
+                        this->rootOfLinearEquationSet(p->Momentum, coefficient, RHS);
+                        cout << "p->P1 = " << p->Momentum.toString() << endl;
+
                     }end_for_each_Particle(p)
 }
 

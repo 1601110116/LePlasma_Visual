@@ -109,7 +109,7 @@ CaseOfDipole::~CaseOfDipole() {
 
 void CaseOfDipole::distributeParticle(){
     double keV = sqrt(2*(1.0e3*1.602e-19*1.0e7*units["gram"]*pow(units["cm"],2)*pow(units["second"],-2)));
-    double x = 1.0e9*units["cm"];
+    double x = 1.0e9*units["cm"];// * sqrt(2)/2;
     double y = 0;
     double z = 0;
 
@@ -120,9 +120,15 @@ void CaseOfDipole::distributeParticle(){
     p1->Position.y = y + grid->gridY()/2.0;
     p1->Position.z = z + grid->gridZ()/2.0;
 
-    p1->Momentum.x = 0.0 - units["B0r03/c"]*y*pow(Square(x)+Square(y)+Square(z),-1.5);
-    p1->Momentum.y = 10*keV + units["B0r03/c"]*x*pow(Square(x)+Square(y)+Square(z),-1.5);
-    p1->Momentum.z = 0*keV;
+    p1->Momentum.x = 10.0*keV - units["B0r03/c"]*y*pow(Square(x)+Square(y)+Square(z),-1.5);
+    p1->Momentum.y = 0.0*keV + units["B0r03/c"]*x*pow(Square(x)+Square(y)+Square(z),-1.5);
+    p1->Momentum.z = 10.0*keV;
+
+
+    //UniformB
+//    p1->Momentum.x = 10.0*keV - 1.0e-2*units["gauss"]*y/2/units["c"];
+//    p1->Momentum.y = 0.0*keV + 1.0e-2*units["gauss"]*x/2/units["c"];
+//    p1->Momentum.z = 10.0*keV;
 
     grid->directAddParticle(p1);
 

@@ -87,7 +87,7 @@ set(SOURCE_FILES
         src_cal/Vertex.cpp
         DispersionRelation.h
         LePlasma.h
-        LePlasma_Visual.cpp include_cal/EngineForSingleParticle.h src_cal/EngineForSingleParticle.cpp include_cal/CaseOfDipole.h src_cal/CaseOfDipole.cpp)
+        LePlasma_Visual.cpp include_cal/EngineForSingleParticle.h src_cal/EngineForSingleParticle.cpp include_cal/CaseOfDipole.h src_cal/CaseOfDipole.cpp include_cal/EngineForAnalyticalField.h src_cal/EngineForAnalyticalField.cpp)
 find_package(OpenGL REQUIRED)
 find_package(GLUT REQUIRED)
 set(CMAKE_C_COMPILER mpicc)
