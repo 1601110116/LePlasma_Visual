@@ -42,7 +42,7 @@ void CaseOfDipole::calcUnits() {
 
 CaseOfDipole::CaseOfDipole() {
     calcUnits();
-    deltaT = 2*M_PI/(20*units["omegaCi"]);
+    deltaT = 2*M_PI/(15*units["omegaCi"]);
 
     if(RunManager::Nodes>1){
         grid = new MPIGrid(20,20,1);

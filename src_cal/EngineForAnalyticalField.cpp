@@ -35,7 +35,7 @@ void EngineForAnalyticalField::calcA(Particle *p) {
 }
 
 void EngineForAnalyticalField::calcGradAdt() {
-    gradAdt.x.x = units["B0r03/c"]*x*y*tmp2*deltaT;
+    gradAdt.x.x = 3*units["B0r03/c"]*x*y*tmp2*deltaT;
     gradAdt.x.y = units["B0r03/c"]*(tmp3 - 3*Square(x)*tmp2)*deltaT;
     gradAdt.x.z = 0;
     gradAdt.y.x = -units["B0r03/c"]*(tmp3 - 3*Square(y)*tmp2)*deltaT;
@@ -72,10 +72,7 @@ void EngineForAnalyticalField::updateP(const Range &range) {
                         calcGradAdt();
                         buildCoefficientTensor(coefficient);
                         RHS = p->Momentum - (gradAdt*(p->A));
-                        cout << "p->A = " << p->A.toString() << endl;
-                        cout << "p->P = " << p->Momentum.toString() << endl;
                         this->rootOfLinearEquationSet(p->Momentum, coefficient, RHS);
-                        cout << "p->P1 = " << p->Momentum.toString() << endl;
 
                     }end_for_each_Particle(p)
 }
@@ -83,7 +80,6 @@ void EngineForAnalyticalField::updateP(const Range &range) {
 void EngineForAnalyticalField::updateX(const Range &range) {
     Particle *p;
     for_each_Particle_within(grid, p, range){
-                        cout << "Position = " << p->Position.toString() << endl;
                         p->Position += (p->Momentum - p->A)*deltaT;
                     }end_for_each_Particle(p)
 }
