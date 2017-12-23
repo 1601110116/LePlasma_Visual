@@ -25,21 +25,12 @@ public:
     void report() override;
 
     Particle* particle;
-    int particleCount;
 
-    double thermalVelocity;
-    double aVx,aVy,aVz;
     ofstream outFileX;
     ofstream outFileY;
 
 
-    map<string, double> units;
-    double omegaCi;
-    double gauss;
-    double cm;
-    double gram;
-    double second;
-    Particle *uniqueParticle;
+
 };
 
 

@@ -16,32 +16,33 @@ class Cell;
 class Vector3D;
 
 class Particle {
-	public:
-		Particle();
-		virtual ~Particle();
+public:
+	Particle();
+	virtual ~Particle();
 
-		double charge;
-		double mass;
-		const char* name;
+	double charge;
+	double mass;
+	const char* name;
 
-		Vector3D Position;
-		Vector3D Momentum;
+	Vector3D Position;
+	Vector3D Momentum;
+	Vector3D A;
 
-		Cell* cell;
+	Cell* cell;
 
-		Particle* nextParticle;
-		Particle* prevParticle;
+	Particle* nextParticle;
+	Particle* prevParticle;
 
-		virtual Particle* clone();
+	virtual Particle* clone();
 
 //A 4*4*4 matrix to store cache
 
-		double W_cache[4][4][4];
-		Vector3D GW_cache[4][4][4];
+	double W_cache[4][4][4];
+	Vector3D GW_cache[4][4][4];
 
 
-	protected:
-		Particle(double,double,const char*);
+protected:
+	Particle(double,double,const char*);
 
 };
 

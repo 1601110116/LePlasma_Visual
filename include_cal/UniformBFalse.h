@@ -27,7 +27,6 @@ public:
 
 	Particle* particle;
 	int particleCount;
-	map<string, double> units;
 	double lightSpeed;
 
 	double thermalVelocity;

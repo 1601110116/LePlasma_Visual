@@ -45,6 +45,10 @@ Tensor3D Tensor3D::operator /(double a)const{
 	return Tensor3D(x/a,y/a,z/a);
 }
 
+Vector3D Tensor3D::operator*(Vector3D &a){
+	return Vector3D(x.x*a.x+x.y*a.y+x.z*a.z, y.x*a.x+y.y*a.y+y.z*a.z, z.x*a.x+z.y*a.y+z.z*a.z);
+}
+
 void Tensor3D::restore(){
 	x.restore();
 	y.restore();

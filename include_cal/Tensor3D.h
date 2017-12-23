@@ -23,22 +23,24 @@
 	}\
 
 class Tensor3D {
-	public:
-		Tensor3D();
-		Tensor3D(Vector3D x, Vector3D y, Vector3D z);
-		virtual ~Tensor3D();
+public:
+	Tensor3D();
+	Tensor3D(Vector3D x, Vector3D y, Vector3D z);
+	virtual ~Tensor3D();
 
-		Vector3D x,y,z;
+	Vector3D x,y,z;
 
-		Tensor3D &operator =(const Tensor3D &a);
-		Tensor3D &operator *=(double a);
-		Tensor3D &operator /=(double a);
+	Tensor3D &operator =(const Tensor3D &a);
+	Tensor3D &operator *=(double a);
+	Tensor3D &operator /=(double a);
 
-		Tensor3D operator /(double a)const;
+	Tensor3D operator /(double a)const;
+	Vector3D operator *(Vector3D &a);
 
-		void restore();
 
-		string toString();
+	void restore();
+
+	string toString();
 
 };
 

@@ -170,7 +170,7 @@ void UniformB::distributeParticle(){
 
 	double sigma = thermalVelocity / sqrt(2);
 
-	Range r=grid->World;
+//	Range r=grid->World;
 
 	for (int i = 0; i < particleCount; i++){
 		Particle *newParticle = particle->clone();
