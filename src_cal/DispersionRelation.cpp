@@ -49,7 +49,9 @@ DispersionRelation::DispersionRelation(){
 	deltaT=1/(1000*lightSpeed);
 
 	if(RunManager::Nodes>1){
+#if MPI_PARALLEL
 		grid = new MPIGrid(4,1,1);
+#endif
 	}else{
 		grid = new Grid(32,1,1,true);
 	}

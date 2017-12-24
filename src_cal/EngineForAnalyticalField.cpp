@@ -9,6 +9,7 @@
 #include "CaseOfDipole.h"
 #include "LePlasma.h"
 
+Tensor3D EngineForAnalyticalField::gradAdt = Tensor3D();
 EngineForAnalyticalField::EngineForAnalyticalField(Grid *grid, double deltaT, map<string, double> &units):\
  Engine(grid, deltaT, units){
 
@@ -25,8 +26,8 @@ void EngineForAnalyticalField::update(const Range &range){
 }
 
 void EngineForAnalyticalField::calcA(Particle *p) {
-    p->A.x = -units["B0r03/c"]*y*tmp3;
-    p->A.y = units["B0r03/c"]*x*tmp3;
+    p->A.x = -units["B0r03/c"]*p->X.y*tmp3;
+    p->A.y = units["B0r03/c"]*p->X.x*tmp3;
     p->A.z = 0;
 
     // UniformB
@@ -34,15 +35,15 @@ void EngineForAnalyticalField::calcA(Particle *p) {
 //    p->A.y = 1.0e-2*units["gauss"]*x/2/units["c"];
 }
 
-void EngineForAnalyticalField::calcGradAdt() {
-    gradAdt.x.x = 3*units["B0r03/c"]*x*y*tmp2*deltaT;
-    gradAdt.x.y = units["B0r03/c"]*(tmp3 - 3*Square(x)*tmp2)*deltaT;
+void EngineForAnalyticalField::calcGradAdt(Particle *p) {
+    gradAdt.x.x = 3*units["B0r03/c"]*p->X.x*p->X.y*tmp2*deltaT;
+    gradAdt.x.y = units["B0r03/c"]*(tmp3 - 3*Square(p->X.x)*tmp2)*deltaT;
     gradAdt.x.z = 0;
-    gradAdt.y.x = -units["B0r03/c"]*(tmp3 - 3*Square(y)*tmp2)*deltaT;
-    gradAdt.y.y = -3*units["B0r03/c"]*x*y*tmp2*deltaT;
+    gradAdt.y.x = -units["B0r03/c"]*(tmp3 - 3*Square(p->X.y)*tmp2)*deltaT;
+    gradAdt.y.y = -3*units["B0r03/c"]*p->X.x*p->X.y*tmp2*deltaT;
     gradAdt.y.z = 0;
-    gradAdt.z.x = 3*units["B0r03/c"]*y*z*tmp2*deltaT;
-    gradAdt.z.y = -3*units["B0r03/c"]*z*x*tmp2*deltaT;
+    gradAdt.z.x = 3*units["B0r03/c"]*p->X.y*p->X.z*tmp2*deltaT;
+    gradAdt.z.y = -3*units["B0r03/c"]*p->X.z*p->X.x*tmp2*deltaT;
     gradAdt.z.z = 0;
 
 
@@ -57,22 +58,27 @@ void EngineForAnalyticalField::calcGradAdt() {
 }
 
 void EngineForAnalyticalField::updateP(const Range &range) {
-    Tensor3D coefficient;
-    Vector3D RHS;
+    static Tensor3D coefficient;
+    static Vector3D RHS;
     Particle *p;
     for_each_Particle_within(grid, p, range){
 
-                        x = p->Position.x - grid->gridX()/2.0;
-                        y = p->Position.y - grid->gridY()/2.0;
-                        z = p->Position.z - grid->gridZ()/2.0;
-                        tmp1 = Square(x)+Square(y)+Square(z);
-                        tmp2 = pow(tmp1, -2.5);
-                        tmp3 = pow(tmp1, -1.5);
+                        p->X.x = p->Position.x - grid->gridX()/2.0;
+                        p->X.y = p->Position.y - grid->gridY()/2.0;
+                        p->X.z = p->Position.z - grid->gridZ()/2.0;
+                        tmp1 = Square(p->X.x)+Square(p->X.y)+Square(p->X.z);
+                        tmp3 = 1/Cube(sqrt(tmp1));
+                        tmp2 = tmp3/tmp1;
+//                        tmp2 = pow(tmp1, -2.5);
+//                        tmp3 = pow(tmp1, -1.5);
                         calcA(p);
-                        calcGradAdt();
+                        calcGradAdt(p);
                         buildCoefficientTensor(coefficient);
-                        RHS = p->Momentum - (gradAdt*(p->A));
-                        this->rootOfLinearEquationSet(p->Momentum, coefficient, RHS);
+                        RHS.restore();
+                        RHS += p->Momentum;
+                        RHS -= (gradAdt*(p->A));
+//                        RHS = p->Momentum - (gradAdt*(p->A));
+                        rootOfLinearEquationSet(p->Momentum, coefficient, RHS);
 
                     }end_for_each_Particle(p)
 }
@@ -99,7 +105,7 @@ void EngineForAnalyticalField::buildCoefficientTensor(Tensor3D &coeT) {
 
 void EngineForAnalyticalField::rootOfLinearEquationSet(Vector3D &root, const Tensor3D &coefficient,
                                                        const Vector3D &RHS) {
-    Tensor3D adjacentMatrix;
+    static Tensor3D adjacentMatrix;
     double determinant = 0;
 
     adjacentMatrix.x.x = coefficient.y.y * coefficient.z.z - coefficient.y.z * coefficient.z.y;

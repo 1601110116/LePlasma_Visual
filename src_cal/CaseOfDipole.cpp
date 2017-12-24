@@ -52,7 +52,8 @@ CaseOfDipole::CaseOfDipole() {
 
     particle=new Electron();
 
-    launch(REPORT);
+//    launch(REPORT);
+    launch(true);
 }
 
 void CaseOfDipole::launch(bool report){
@@ -84,21 +85,26 @@ void CaseOfDipole::launch(bool report){
         strftime(tmp, sizeof(tmp), "%Y_%m_%d_%H_%M",localtime(&t));
         ostringstream name1;
         ostringstream name2;
-        name1<<"Report"<<tmp<<"PositionX" << ".output";
-        name2 << "Report" << tmp << "PositionY" << ".output";
+        name1<<"Report"<<tmp<<"Position" << ".output";
+        name2 << "Report" << tmp << "Velocity" << ".output";
         outFileX.open(name1.str().c_str());
-        outFileY.open(name2.str().c_str());
+        outFileV.open(name2.str().c_str());
     }
 }
 
 void CaseOfDipole::report(){
-    if(REPORT){
-        Particle *curParticle;
-        for_each_Particle(grid,curParticle){
-                            outFileX << curParticle->Position.x << '\t';
-                            outFileY << curParticle->Position.y << '\t';
-                        }end_for_each_Particle(curParticle)
-    }
+//    if(REPORT){
+        Particle *p;
+        for_each_Particle(grid,p){
+                            outFileX << p->X.x/units["cm"] << '\t' << p->X.y/units["cm"] << '\t' << p->X.z/units["cm"] << endl;
+                            outFileV << (p->Momentum.x-p->A.x)*units["second"]/units["cm"] << '\t';
+                            outFileV << (p->Momentum.y-p->A.y)*units["second"]/units["cm"] << '\t';
+                            outFileV << (p->Momentum.z-p->A.z)*units["second"]/units["cm"] << endl;
+
+//                            outFileX << curParticle->Position.x << '\t';
+//                            outFileY << curParticle->Position.y << '\t';
+                        }end_for_each_Particle(p)
+//    }
 }
 
 

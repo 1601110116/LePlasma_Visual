@@ -27,6 +27,8 @@ public:
 	Vector3D Position;
 	Vector3D Momentum;
 	Vector3D A;
+//	Vector3D B;  // the local magnetic field in grid units
+	Vector3D X;  // the position of the particle in cartesian coordinate in grid units
 
 	Cell* cell;
 

@@ -85,7 +85,6 @@ set(SOURCE_FILES
         src_cal/UniformE.cpp
         src_cal/Vector3D.cpp
         src_cal/Vertex.cpp
-        DispersionRelation.h
         LePlasma.h
         LePlasma_Visual.cpp include_cal/EngineForSingleParticle.h src_cal/EngineForSingleParticle.cpp include_cal/CaseOfDipole.h src_cal/CaseOfDipole.cpp include_cal/EngineForAnalyticalField.h src_cal/EngineForAnalyticalField.cpp)
 find_package(OpenGL REQUIRED)

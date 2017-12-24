@@ -15,11 +15,11 @@ public:
     EngineForAnalyticalField(Grid *grid, double deltaT, map<string, double> &units);
     virtual ~EngineForAnalyticalField();
 
-    double x,y,z;  // used to calc local field of the particle
+//    double x,y,z;  // used to calc local field of the particle
     double tmp1, tmp2, tmp3;
-    Tensor3D gradAdt;
+    static Tensor3D gradAdt;
     void calcA(Particle *p);
-    void calcGradAdt();
+    void calcGradAdt(Particle *p);
     void updateP(const Range&);
     void updateX(const Range&);
     void buildCoefficientTensor(Tensor3D& coefficientTensor);

@@ -27,7 +27,7 @@ public:
     Particle* particle;
 
     ofstream outFileX;
-    ofstream outFileY;
+    ofstream outFileV;
 
 
 
