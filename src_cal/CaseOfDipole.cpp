@@ -18,6 +18,7 @@
 #include <iostream>
 #include "EngineForSingleParticle.h"
 #include "EngineForAnalyticalField.h"
+#include "EngineForModifiedField.h"
 
 
 void CaseOfDipole::calcUnits() {
@@ -42,7 +43,7 @@ void CaseOfDipole::calcUnits() {
 
 CaseOfDipole::CaseOfDipole() {
     calcUnits();
-    deltaT = 2*M_PI/(15*units["omegaCi"]);
+    deltaT = 2*M_PI/(40*units["omegaCi"]);
 
     if(RunManager::Nodes>1){
         grid = new MPIGrid(20,20,1);
@@ -73,7 +74,8 @@ void CaseOfDipole::launch(bool report){
     initY();
 
     //select Engine
-    engine=new EngineForAnalyticalField(grid,deltaT,units);
+//    engine=new EngineForModifiedField(grid,deltaT,units);
+    engine=new EngineForModifiedField(grid,deltaT,units);
 
     if(RunManager::Nodes>1){
         grid->refreshParticleLocation();
@@ -114,21 +116,23 @@ CaseOfDipole::~CaseOfDipole() {
 
 
 void CaseOfDipole::distributeParticle(){
-    double keV = sqrt(2*(1.0e3*1.602e-19*1.0e7*units["gram"]*pow(units["cm"],2)*pow(units["second"],-2)));
-    double x = 1.0e9*units["cm"];// * sqrt(2)/2;
-    double y = 0;
-    double z = 0;
-
+    double v0 = sqrt(2*(1.0e4*1.602e-19*1.0e7*units["gram"]*pow(units["cm"],2)*pow(units["second"],-2)));
     Range r=grid->World;
 
     Particle *p1 = particle->clone();
-    p1->Position.x = x + grid->gridX()/2.0;
-    p1->Position.y = y + grid->gridY()/2.0;
-    p1->Position.z = z + grid->gridZ()/2.0;
+    p1->X.x = 1.0e9*units["cm"];// * sqrt(2)/2;
+    p1->X.y = 0;
+    p1->X.z = 0;
+    p1->Position.x = p1->X.x + grid->gridX()/2.0;
+    p1->Position.y = p1->X.y + grid->gridY()/2.0;
+    p1->Position.z = p1->X.z + grid->gridZ()/2.0;
 
-    p1->Momentum.x = 10.0*keV - units["B0r03/c"]*y*pow(Square(x)+Square(y)+Square(z),-1.5);
-    p1->Momentum.y = 0.0*keV + units["B0r03/c"]*x*pow(Square(x)+Square(y)+Square(z),-1.5);
-    p1->Momentum.z = 10.0*keV;
+    p1->A.x = -1*units["B0r03/c"]*p1->X.y*pow(Square(p1->X.x)+Square(p1->X.y)+Square(p1->X.z),-1.5);
+    p1->A.y = units["B0r03/c"]*p1->X.x*pow(Square(p1->X.x)+Square(p1->X.y)+Square(p1->X.z),-1.5);
+    p1->A.z = 0;
+    p1->Momentum.x = v0 + p1->A.x;
+    p1->Momentum.y = 0.0 + p1->A.y;
+    p1->Momentum.z = v0 + p1->A.z;
 
 
     //UniformB
@@ -147,8 +151,7 @@ void CaseOfDipole::initP(){
 }
 
 
-void CaseOfDipole::initA(){
-
+void CaseOfDipole::initA() {
 
 }
 

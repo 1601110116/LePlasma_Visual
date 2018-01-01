@@ -86,7 +86,7 @@ set(SOURCE_FILES
         src_cal/Vector3D.cpp
         src_cal/Vertex.cpp
         LePlasma.h
-        LePlasma_Visual.cpp include_cal/EngineForSingleParticle.h src_cal/EngineForSingleParticle.cpp include_cal/CaseOfDipole.h src_cal/CaseOfDipole.cpp include_cal/EngineForAnalyticalField.h src_cal/EngineForAnalyticalField.cpp)
+        LePlasma_Visual.cpp include_cal/EngineForSingleParticle.h src_cal/EngineForSingleParticle.cpp include_cal/CaseOfDipole.h src_cal/CaseOfDipole.cpp include_cal/EngineForAnalyticalField.h src_cal/EngineForAnalyticalField.cpp include_cal/EngineForModifiedField.h src_cal/EngineForModifiedField.cpp)
 find_package(OpenGL REQUIRED)
 find_package(GLUT REQUIRED)
 set(CMAKE_C_COMPILER mpicc)

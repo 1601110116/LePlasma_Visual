@@ -8,7 +8,7 @@
 #ifndef LEPLASMA_H_
 #define LEPLASMA_H_
 
-#define RECORD true
+#define RECORD true //true if save file
 
 #define REPORT false
 
