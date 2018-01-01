@@ -7,6 +7,8 @@
 
 #include <Cell.h>
 #include <HostGrid.h>
+#include "LePlasma.h"
+
 #if REPORT
 #include <inet.h>
 #endif

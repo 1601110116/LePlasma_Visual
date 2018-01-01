@@ -10,40 +10,41 @@
 
 #include "Vector3D.h"
 #include <Cell.h>
-#include <PhysicalParameters.h>
+#include <Macros.h>
 
 class Cell;
 class Vector3D;
 
 class Particle {
-	public:
-		Particle();
-		virtual ~Particle();
+public:
+	Particle();
+	virtual ~Particle();
 
-		double charge;
-		double mass;
-		const char* name;
+	double charge;
+	double mass;
+	const char* name;
 
-		Vector3D Position;
-		Vector3D Momentum;
+	Vector3D Position;
+	Vector3D Momentum;
+	Vector3D A;
+//	Vector3D B;  // the local magnetic field in grid units
+	Vector3D X;  // the position of the particle in cartesian coordinate in grid units
 
-		Cell* cell;
+	Cell* cell;
 
-		Particle* nextParticle;
-		Particle* prevParticle;
+	Particle* nextParticle;
+	Particle* prevParticle;
 
-		virtual Particle* clone();
+	virtual Particle* clone();
 
-#if USE_CACHE
 //A 4*4*4 matrix to store cache
 
-		double W_cache[4][4][4];
-		Vector3D GW_cache[4][4][4];
+	double W_cache[4][4][4];
+	Vector3D GW_cache[4][4][4];
 
-#endif
 
-	protected:
-		Particle(double,double,const char*);
+protected:
+	Particle(double,double,const char*);
 
 };
 

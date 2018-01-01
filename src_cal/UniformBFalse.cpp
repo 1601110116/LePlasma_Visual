@@ -12,20 +12,44 @@
 #include <Grid.h>
 #include <LePlasma.h>
 #include <MPIGrid.h>
-#include <PhysicalParameters.h>
+#include <Macros.h>
 #include <RunManager.h>
 #include <stdlib.h>
 #include <Vector3D.h>
 #include <Vertex.h>
 #include <cmath>
 #include <iostream>
+#include "EngineForSingleParticle.h"
+
+
+inline double _W1(double x){
+    if (x > 2)
+        return 0.0;
+    else if (x > 1)
+        return x * (Cube(x) * (x * (x * (x * (15.0/1024 * x - 15.0/128) + 49.0/128) - 21.0/32) + 35.0/64) - 1.0) + 1.0;
+    else if (x > 0)
+        return Square(x) * (Square(x) * (x * (x * (x * (-15.0/1024 * x - 15.0/128) + 7.0/16) - 21.0/32) + 175.0/256) - 105.0/128) + 337.0/512;
+    else if (x > -1)
+        return x * x * (x * x * (x * (x * (x * (-15.0/1024 * x + 15.0/128) + 7.0/16) + 21.0/32) + 175.0/256) - 105.0/128) + 337.0/512;
+    else if (x > -2)
+        return x * (Cube(x) * (x * (x * (x * (15.0/1024 * x + 15.0/128) + 49.0/128) + 21.0/32) + 35.0/64) + 1.0) + 1.0;
+    else
+        return 0.0;
+}
+
+inline double _W(const Vector3D &r){
+    return _W1(r.x)*_W1(r.y)*_W1(r.z);
+}
 
 UniformBFalse::UniformBFalse(){
 
 /*	You should change "updateP(range)" into "updatePFalse(range)" first,
  *     and then disable "updateA(range)" and "updateY(range)".
  */
-	deltaT=M_PI/(10*LIGHT_SPEED);
+	lightSpeed = 3.2151e1;
+	units["lightSpeed"] = lightSpeed;
+	deltaT=M_PI/(1*lightSpeed);
+
 
 	if(RunManager::Nodes>1){
 		grid = new MPIGrid(130,130,1);
@@ -33,17 +57,18 @@ UniformBFalse::UniformBFalse(){
 		grid = new Grid(130,130,1,true);
 	}
 
+
 	particle=new Electron();
 	particleCount=1;
 
 	thermalVelocity=0;//0.1*LIGHT_SPEED;
 
 	aVx=aVy=aVz=0;
-	aVy=-0.1*LIGHT_SPEED;
+	aVy=-0.1*lightSpeed;
 
 	//select Engine
 
-	engine=new CSPIC(grid,deltaT);
+	engine=new CSPIC(grid,deltaT,units);
 
 	launch(REPORT);
 }
@@ -176,14 +201,14 @@ void UniformBFalse::initA(){
 	//		//currently Momentum is Velocity
 	//		for_each_Vertex_around(grid, curVertex, curParticle, VertexRealPosition){
 	//			r = VertexRealPosition - curParticle->Position;
-	//			rc2 = sqrt(Square(r.x) + Square(r.y) + Square(r.z)) * Square(LIGHT_SPEED);
+	//			rc2 = sqrt(Square(r.x) + Square(r.y) + Square(r.z)) * Square(lightSpeed);
 	//			curVertex->A += (curParticle->Momentum / rc2);
 	//		}end_for_each_Vertex_around
 	//
 	//	}end_for_each_Particle(curParticle)
 	Vertex *curVertex;
 	for_each_Vertex_within(grid,curVertex,grid->workSpace){
-		curVertex->A=Vector3D(-curVertex->y()/2.0,curVertex->x()/2.0,0)*(LIGHT_SPEED/50.0);
+		curVertex->A=Vector3D(-curVertex->y()/2.0,curVertex->x()/2.0,0)*(lightSpeed/50.0);
 	}end_for_each_Vertex_within
 }
 

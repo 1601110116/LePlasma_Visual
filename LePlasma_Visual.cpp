@@ -6,11 +6,12 @@
 // Description : Hello World in C++, Ansi-style
 //============================================================================
 
-#include <CaseLauncher.h>
+
 #include <DispersionRelation.h>
 #include <UniformE.h>
 #include <UniformB.h>
 #include <UniformBFalse.h>
+#include "CaseOfDipole.h"
 #include <GLEnvironment.h>
 #include <Grid.h>
 #include <LePlasma.h>
@@ -32,7 +33,7 @@ int main(int argc, char**argv){
 #endif
 
 
-	Case* myCase = new DispersionRelation();
+	Case* myCase = new CaseOfDipole();
 //	Case* myCase=new DispersionRelation();
 	//Case* myCase=new SingleParticle();
 

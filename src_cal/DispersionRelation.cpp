@@ -12,35 +12,61 @@
 #include <Grid.h>
 #include <LePlasma.h>
 #include <MPIGrid.h>
-#include <PhysicalParameters.h>
+#include <Macros.h>
 #include <RunManager.h>
 #include <stdlib.h>
 #include <Vector3D.h>
 #include <Vertex.h>
 #include <cmath>
 #include <iostream>
+#include <DispersionRelation.h>
+
+
+inline double _W1(double x){
+    if (x > 2)
+        return 0.0;
+    else if (x > 1)
+        return x * (Cube(x) * (x * (x * (x * (15.0/1024 * x - 15.0/128) + 49.0/128) - 21.0/32) + 35.0/64) - 1.0) + 1.0;
+    else if (x > 0)
+        return Square(x) * (Square(x) * (x * (x * (x * (-15.0/1024 * x - 15.0/128) + 7.0/16) - 21.0/32) + 175.0/256) - 105.0/128) + 337.0/512;
+    else if (x > -1)
+        return x * x * (x * x * (x * (x * (x * (-15.0/1024 * x + 15.0/128) + 7.0/16) + 21.0/32) + 175.0/256) - 105.0/128) + 337.0/512;
+    else if (x > -2)
+        return x * (Cube(x) * (x * (x * (x * (15.0/1024 * x + 15.0/128) + 49.0/128) + 21.0/32) + 35.0/64) + 1.0) + 1.0;
+    else
+        return 0.0;
+}
+
+inline double _W(const Vector3D &r){
+    return _W1(r.x)*_W1(r.y)*_W1(r.z);
+}
 
 DispersionRelation::DispersionRelation(){
+	lightSpeed = 3.2151e1;
+	units["lightSpeed"] = lightSpeed;
 
 //	You should enable "updateA(range)" and "updateY(range)".
-	deltaT=1/(1000*LIGHT_SPEED);
+	deltaT=1/(1000*lightSpeed);
 
 	if(RunManager::Nodes>1){
+#if MPI_PARALLEL
 		grid = new MPIGrid(4,1,1);
+#endif
 	}else{
 		grid = new Grid(32,1,1,true);
 	}
 
+
 	particle=new Electron();
 	particleCount=32*1*1*100;
 
-	thermalVelocity=0.001*LIGHT_SPEED;//0.1*LIGHT_SPEED;
+	thermalVelocity=0.001*lightSpeed;//0.1*LIGHT_SPEED;
 
 	aVx=aVy=aVz=0;
 
 	//select Engine
 
-	engine=new CSPIC(grid,deltaT);
+	engine=new CSPIC(grid,deltaT,units);
 
 	launch(REPORT);
 }
@@ -151,7 +177,7 @@ void DispersionRelation::initA(){
 	//		//currently Momentum is Velocity
 	//		for_each_Vertex_around(grid, curVertex, curParticle, VertexRealPosition){
 	//			r = VertexRealPosition - curParticle->Position;
-	//			rc2 = sqrt(Square(r.x) + Square(r.y) + Square(r.z)) * Square(LIGHT_SPEED);
+	//			rc2 = sqrt(Square(r.x) + Square(r.y) + Square(r.z)) * Square(lightSpeed);
 	//			curVertex->A += (curParticle->Momentum / rc2);
 	//		}end_for_each_Vertex_around
 	//

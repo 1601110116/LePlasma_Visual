@@ -15,14 +15,55 @@
 #include <Vertex.h>
 #include <cmath>
 #include <iostream>
-
+#include "LePlasma.h"
 #if USE_CACHE
 #include <indexCache.h>
 #endif
 
-Range PtAdjacentL,PtAdjacentR;
+inline double _W1(double x){
+    if (x > 2)
+        return 0.0;
+    else if (x > 1)
+        return x * (Cube(x) * (x * (x * (x * (15.0/1024 * x - 15.0/128) + 49.0/128) - 21.0/32) + 35.0/64) - 1.0) + 1.0;
+    else if (x > 0)
+        return Square(x) * (Square(x) * (x * (x * (x * (-15.0/1024 * x - 15.0/128) + 7.0/16) - 21.0/32) + 175.0/256) - 105.0/128) + 337.0/512;
+    else if (x > -1)
+        return x * x * (x * x * (x * (x * (x * (-15.0/1024 * x + 15.0/128) + 7.0/16) + 21.0/32) + 175.0/256) - 105.0/128) + 337.0/512;
+    else if (x > -2)
+        return x * (Cube(x) * (x * (x * (x * (15.0/1024 * x + 15.0/128) + 49.0/128) + 21.0/32) + 35.0/64) + 1.0) + 1.0;
+    else
+        return 0.0;
+}
 
-CSPIC::CSPIC(Grid*_grid,double dt):Engine(_grid,dt){
+inline double dW1(double x){
+    if (x > 2)
+        return 0.0;
+    else if (x > 1)
+        return Cube(x) * (x * (x * (x * (15.0/128 * x - 105.0/128) + 147.0/64) - 105.0/32) + 35.0/16) - 1.0;
+    else if (x > 0)
+        return x * (x * x * (x * (x * (x * (-15.0/128 * x - 105.0/128) + 21.0/8) - 105.0/32) + 175.0/64) - 105.0/64);
+    else if (x > -1)
+        return x * (x * x * (x * (x * (x * (-15.0/128 * x + 105.0/128) + 21.0/8) + 105.0/32) + 175.0/64) - 105.0/64);
+    else if (x > -2)
+        return Cube(x) * (x * (x * (x * (15.0/128 * x + 105.0/128) + 147.0/64) + 105.0/32) + 35.0/16) + 1.0;
+    else
+        return 0.0;
+}
+
+
+
+inline double _W(const Vector3D &r){
+    return _W1(r.x)*_W1(r.y)*_W1(r.z);
+}
+
+
+inline void GradW(Vector3D& gradW, const Vector3D &r){
+    gradW.x=dW1(r.x)*_W1(r.y)*_W1(r.z);
+    gradW.y=_W1(r.x)*dW1(r.y)*_W1(r.z);
+    gradW.z=_W1(r.x)*_W1(r.y)*dW1(r.z);
+}
+
+CSPIC::CSPIC(Grid*_grid,double dt, map<string, double> &units):Engine(_grid,dt,units){
 
 	init_3D_Vector_Field(curldA,grid->_width,grid->_height,grid->_length);
 	init_3D_Vector_Field(curldTCurldA, grid->_width,grid->_height,grid->_length);
@@ -33,6 +74,7 @@ CSPIC::CSPIC(Grid*_grid,double dt):Engine(_grid,dt){
 	PtAdjacentR=Range(grid->_width-SWAP_LEN,grid->_width-P_ADJ_BEGIN_R,0,grid->_height,0,grid->_length);
 #endif
 
+	lightSpeed = units["lightSpeed"];
 }
 
 CSPIC::~CSPIC(){
@@ -82,9 +124,9 @@ void CSPIC::update(const Range& range){
 
 
 #pragma omp barrier
-	setCurldA(range);
+//	setCurldA(range);
 #pragma omp barrier
-	setCurldTCurldA(range);
+//	setCurldTCurldA(range);
 
 	updateY(range);
 
@@ -321,7 +363,7 @@ void CSPIC::updatePFalse(const Range &range){
 
 void CSPIC::updateY(const Range& range){
 
-	static double constAcceletor=deltaT * Square(LIGHT_SPEED)/ (4 * M_PI);
+	static double constAcceletor=deltaT * Square(lightSpeed)/ (4 * M_PI);
 
 	Vector3D firstTerm,secondTerm;
 	Vector3D dFirstTerm,dSecondTerm;
@@ -520,7 +562,7 @@ void CSPIC::updateY(const Range &range){
 	Vector3D acceletor_D1,acceletor_D2,acceletor_D3;
 	Vector3D acceletor_FT,acceletor_A;
 
-	static double constAcceletor=deltaT * Square(LIGHT_SPEED)/ (4 * M_PI);
+	static double constAcceletor=deltaT * Square(lightSpeed)/ (4 * M_PI);
 
 	setCurldA(range);
 	setCurldTCurldA(range);

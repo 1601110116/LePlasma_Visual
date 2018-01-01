@@ -9,7 +9,6 @@ set(SOURCE_FILES
         include/XYZIndicator.h
         include_cal/Buffer.h
         include_cal/Case.h
-        include_cal/CaseLauncher.h
         include_cal/Cell.h
         include_cal/CSPIC.h
         include_cal/DispersionRelation.h
@@ -24,12 +23,11 @@ set(SOURCE_FILES
         include_cal/MPIGrid.h
         include_cal/Particle.h
         include_cal/ParticleDistributer.h
-        include_cal/PhysicalParameters.h
+        include_cal/Macros.h
         include_cal/PlateWave.h
         include_cal/Range.h
         include_cal/RunManager.h
         include_cal/Tensor3D.h
-        include_cal/TestFor.h
         include_cal/UniformB.h
         include_cal/UniformBFalse.h
         include_cal/UniformE.h
@@ -65,7 +63,6 @@ set(SOURCE_FILES
         src/Visualize.cpp
         src/XYZIndicator.cpp
         src_cal/Case.cpp
-        src_cal/CaseLauncher.cpp
         src_cal/Cell.cpp
         src_cal/CSPIC.cpp
         src_cal/DispersionRelation.cpp
@@ -83,15 +80,13 @@ set(SOURCE_FILES
         src_cal/Range.cpp
         src_cal/RunManager.cpp
         src_cal/Tensor3D.cpp
-        src_cal/TestFor.cpp
         src_cal/UniformB.cpp
         src_cal/UniformBFalse.cpp
         src_cal/UniformE.cpp
         src_cal/Vector3D.cpp
         src_cal/Vertex.cpp
-        DispersionRelation.h
         LePlasma.h
-        LePlasma_Visual.cpp)
+        LePlasma_Visual.cpp include_cal/EngineForSingleParticle.h src_cal/EngineForSingleParticle.cpp include_cal/CaseOfDipole.h src_cal/CaseOfDipole.cpp include_cal/EngineForAnalyticalField.h src_cal/EngineForAnalyticalField.cpp include_cal/EngineForModifiedField.h src_cal/EngineForModifiedField.cpp)
 find_package(OpenGL REQUIRED)
 find_package(GLUT REQUIRED)
 set(CMAKE_C_COMPILER mpicc)

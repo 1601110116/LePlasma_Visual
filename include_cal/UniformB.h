@@ -10,27 +10,30 @@
 
 #include "Case.h"
 #include "Particle.h"
+#include <map>
 
 class UniformB:public Case {
-	public:
-		UniformB();
-		virtual ~UniformB();
+public:
+	UniformB();
+	virtual ~UniformB();
 
-		void distributeParticle();
-		void initP();
-		void initA();
-		void initY();
-		void launch(bool report);
+	void distributeParticle() override;
+	void initP() override;
+	void initA() override;
+	void initY() override;
+	void launch(bool report) override;
+    void calcUnits() override ;
 
-		void report();
+	void report() override;
 
-		Particle* particle;
-		int particleCount;
+	Particle* particle;
+	int particleCount;
+	double lightSpeed;
 
-		double thermalVelocity;
-		double aVx,aVy,aVz;
-		ofstream outFileX;
-		ofstream outFileY;
+	double thermalVelocity;
+	double aVx,aVy,aVz;
+	ofstream outFileX;
+	ofstream outFileY;
 };
 
 #endif /* INCLUDE_DISPERSIONRELATION_H_ */

@@ -98,9 +98,6 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/DispersionRelation.h">
-			<Option target="LePlasma_Visual"/>
-		</Unit>
 		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/LeFrame/include/AScompat.h">
 			<Option target="LePlasma_Visual"/>
 		</Unit>
@@ -203,7 +200,7 @@
 		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/include_cal/Case.h">
 			<Option target="LePlasma_Visual"/>
 		</Unit>
-		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/include_cal/CaseLauncher.h">
+		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/include_cal/CaseOfDipole.h">
 			<Option target="LePlasma_Visual"/>
 		</Unit>
 		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/include_cal/Cell.h">
@@ -221,6 +218,15 @@
 		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/include_cal/Engine.h">
 			<Option target="LePlasma_Visual"/>
 		</Unit>
+		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/include_cal/EngineForAnalyticalField.h">
+			<Option target="LePlasma_Visual"/>
+		</Unit>
+		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/include_cal/EngineForModifiedField.h">
+			<Option target="LePlasma_Visual"/>
+		</Unit>
+		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/include_cal/EngineForSingleParticle.h">
+			<Option target="LePlasma_Visual"/>
+		</Unit>
 		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/include_cal/Eular.h">
 			<Option target="LePlasma_Visual"/>
 		</Unit>
@@ -236,13 +242,13 @@
 		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/include_cal/MPIGrid.h">
 			<Option target="LePlasma_Visual"/>
 		</Unit>
+		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/include_cal/Macros.h">
+			<Option target="LePlasma_Visual"/>
+		</Unit>
 		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/include_cal/Particle.h">
 			<Option target="LePlasma_Visual"/>
 		</Unit>
 		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/include_cal/ParticleDistributer.h">
-			<Option target="LePlasma_Visual"/>
-		</Unit>
-		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/include_cal/PhysicalParameters.h">
 			<Option target="LePlasma_Visual"/>
 		</Unit>
 		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/include_cal/PlateWave.h">
@@ -255,9 +261,6 @@
 			<Option target="LePlasma_Visual"/>
 		</Unit>
 		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/include_cal/Tensor3D.h">
-			<Option target="LePlasma_Visual"/>
-		</Unit>
-		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/include_cal/TestFor.h">
 			<Option target="LePlasma_Visual"/>
 		</Unit>
 		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/include_cal/UniformB.h">
@@ -302,7 +305,7 @@
 		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/src_cal/Case.cpp">
 			<Option target="LePlasma_Visual"/>
 		</Unit>
-		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/src_cal/CaseLauncher.cpp">
+		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/src_cal/CaseOfDipole.cpp">
 			<Option target="LePlasma_Visual"/>
 		</Unit>
 		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/src_cal/Cell.cpp">
@@ -318,6 +321,15 @@
 			<Option target="LePlasma_Visual"/>
 		</Unit>
 		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/src_cal/Engine.cpp">
+			<Option target="LePlasma_Visual"/>
+		</Unit>
+		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/src_cal/EngineForAnalyticalField.cpp">
+			<Option target="LePlasma_Visual"/>
+		</Unit>
+		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/src_cal/EngineForModifiedField.cpp">
+			<Option target="LePlasma_Visual"/>
+		</Unit>
+		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/src_cal/EngineForSingleParticle.cpp">
 			<Option target="LePlasma_Visual"/>
 		</Unit>
 		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/src_cal/Eular.cpp">
@@ -351,9 +363,6 @@
 			<Option target="LePlasma_Visual"/>
 		</Unit>
 		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/src_cal/Tensor3D.cpp">
-			<Option target="LePlasma_Visual"/>
-		</Unit>
-		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/src_cal/TestFor.cpp">
 			<Option target="LePlasma_Visual"/>
 		</Unit>
 		<Unit filename="/home/ylang/ClionProjects/LePlasma_Visual/src_cal/UniformB.cpp">

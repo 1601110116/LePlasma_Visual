@@ -8,26 +8,28 @@
 #ifndef INCLUDE_DISPERSIONRELATION_H_
 #define INCLUDE_DISPERSIONRELATION_H_
 
-#include "Case.h"
+#include <Case.h>
 #include "Particle.h"
+#include <map>
 
 class DispersionRelation:public Case {
-	public:
-		DispersionRelation();
-		virtual ~DispersionRelation();
+public:
+	DispersionRelation();
+	virtual ~DispersionRelation();
 
-		void distributeParticle();
-		void initP();
-		void initA();
-		void initY();
+	void distributeParticle() override;
+	void initP() override;
+	void initA() override;
+	void initY() override;
 
-		void report();
+	void report() override;
 
-		Particle* particle;
-		int particleCount;
+	Particle* particle;
+	int particleCount;
+	double lightSpeed;
 
-		double thermalVelocity;
-		double aVx,aVy,aVz;
+	double thermalVelocity;
+	double aVx,aVy,aVz;
 };
 
 #endif /* INCLUDE_DISPERSIONRELATION_H_ */

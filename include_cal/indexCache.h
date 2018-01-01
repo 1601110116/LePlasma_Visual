@@ -9,7 +9,6 @@
 #define INCLUDE_INDEXCACHE_H_
 
 
-#if USE_CACHE
 
 
 ///////Vertex Around
@@ -67,7 +66,6 @@
 
 
 
-#endif
 
 
 #endif /* INCLUDE_INDEXCACHE_H_ */

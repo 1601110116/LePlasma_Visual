@@ -8,7 +8,7 @@
 #ifndef INCLUDE_MPIGRID_H_
 #define INCLUDE_MPIGRID_H_
 
-
+#include "LePlasma.h"
 
 #if REPORT
 #include <inet.h>
